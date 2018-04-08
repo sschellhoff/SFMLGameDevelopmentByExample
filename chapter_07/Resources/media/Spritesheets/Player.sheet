@@ -1,0 +1,11 @@
+Texture PlayerSprite
+Size 32 32
+Scale 1.0 1.0
+|Type|Name|StartFrame|EndFrame|Row|FrameTime|FrameActionStart|FrameActionEnd|
+AnimationType Directional
+Animation Idle 0 7 0 0.2 -1 -1
+Animation Walk 0 5 2 0.1 -1 -1
+Animation Jump 0 3 4 0.2 -1 -1
+Animation Attack 0 4 6 0.08 2 3
+Animation Hurt 0 2 8 0.2 -1 -1
+Animation Death 0 8 10 0.15 -1 -1

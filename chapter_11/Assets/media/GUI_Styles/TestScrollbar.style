@@ -1,0 +1,16 @@
+State Neutral
+Size 12 12
+BgColor 80 80 80 200
+|BgImage TestImage
+ElementColor 50 50 50 255
+|Glyph TestImage2
+GlyphPadding 0 0
+/State
+
+State Hover
+BgColor 155 155 155 200
+/State
+
+State Clicked
+BgColor 200 200 200 200
+/State

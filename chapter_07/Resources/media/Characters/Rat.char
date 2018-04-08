@@ -1,0 +1,8 @@
+Name Rat
+Spritesheet Rat.sheet
+Hitpoints 2
+BoundingBox 14 14
+DamageBox 0 0 14 14
+Speed 512 64
+JumpVelocity 128
+MaxVelocity 128 1024

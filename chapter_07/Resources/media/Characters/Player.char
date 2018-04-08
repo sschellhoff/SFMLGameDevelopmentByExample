@@ -1,0 +1,8 @@
+Name Player
+Spritesheet Player.sheet
+Hitpoints 5
+BoundingBox 20 26
+DamageBox -5 0 26 26
+Speed 1024 128
+JumpVelocity 250
+MaxVelocity 200 1024

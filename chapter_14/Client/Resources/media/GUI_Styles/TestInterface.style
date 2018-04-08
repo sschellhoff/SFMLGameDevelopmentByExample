@@ -1,0 +1,18 @@
+State Neutral
+Size 450 277
+BgImage TestGUIBg
+BgImageColor 255 255 255 150
+TextColor 255 255 255 255
+TextSize 12
+Font Main
+TextPadding 0 0
+ElementColor 128 128 128 255
+/State
+
+State Hover
+BgImageColor 255 255 255 200
+/State
+
+State Clicked
+BgImageColor 255 255 255 200
+/State

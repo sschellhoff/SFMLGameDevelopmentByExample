@@ -1,0 +1,9 @@
+TestSound media/Audio/1_Mono.ogg
+Glass media/Audio/glass.ogg
+Footstep media/Audio/footstep.ogg
+Grunt media/Audio/gruntsound.ogg
+Swish media/Audio/swish.ogg
+Impact media/Audio/impact.ogg
+PlayerDeath media/Audio/death.ogg
+Electrix media/Audio/Electrix_NES.ogg
+TownTheme media/Audio/TownTheme.ogg

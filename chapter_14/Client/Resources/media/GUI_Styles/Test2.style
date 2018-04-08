@@ -1,0 +1,15 @@
+State Neutral
+Size 64 32
+TextColor 0 0 0 255
+TextSize 12
+Font Main
+TextPadding 0 0
+/State
+
+State Hover
+TextColor 255 255 255 255
+/State
+
+State Clicked
+TextColor 255 0 0 255
+/State

@@ -1,0 +1,16 @@
+Name Player
+Attributes 8063
+|Component|ID|Individual attributes|
+Component 0 0 0 1
+Component 1 Player
+Component 2 0
+Component 3 128.0 1024.0 1024.0 1
+Component 4
+Component 5 20.0 20.0 0.0 0.0 2
+Component 6 footstep:1,4 swish:1 impact:1 grunt:3
+|Component 7
+Component 8
+Component 9 5 333 2000
+Component 10 Player
+Component 11 0 -32
+Component 12 0 0 16 16 500 333

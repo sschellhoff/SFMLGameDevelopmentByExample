@@ -1,0 +1,4 @@
+Interface SomeWindow TestInterface.style 50 50 Movable Title "Test Interface"
+Element Label TestLabel 0 0 Test.style "This is a label."
+Element Label OtherLabel 0 320 Test2.style "This is a different label"
+Element Scrollbar Slider1 0 0 TestScrollbar.style Vertical

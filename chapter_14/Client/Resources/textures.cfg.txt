@@ -1,0 +1,6 @@
+Intro media/Textures/intro.png
+PlayerSprite media/Textures/PlayerSheet.png
+SkeletonSprite media/Textures/SkeletonSheet.png
+TileSheet media/Textures/tilesheet.png
+TestGUIBg media/Textures/ADOM-OGA-UI.png
+HeartBar media/Textures/HeartBar.png

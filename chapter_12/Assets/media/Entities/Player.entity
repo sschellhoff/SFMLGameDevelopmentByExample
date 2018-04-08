@@ -1,0 +1,11 @@
+Name Player
+Attributes 255
+|Component|ID|Individual attributes|
+Component 0 0 0 1
+Component 1 Player
+Component 2 0
+Component 3 128.0 1024.0 1024.0 1
+Component 4
+Component 5 20.0 20.0 0.0 0.0 2
+Component 6 footstep:1,4
+Component 7
