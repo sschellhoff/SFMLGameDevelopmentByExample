@@ -11,16 +11,17 @@
 #include "Utilities.h"
 #include "GUI_Event.h"
 
-enum class EventType{ KeyDown = sf::Event::KeyPressed, 
-	KeyUp = sf::Event::KeyReleased, 
-	MButtonDown = sf::Event::MouseButtonPressed, 
+enum class EventType{
+	KeyDown = sf::Event::KeyPressed,
+	KeyUp = sf::Event::KeyReleased,
+	MButtonDown = sf::Event::MouseButtonPressed,
 	MButtonUp = sf::Event::MouseButtonReleased,
 	MouseWheel = sf::Event::MouseWheelMoved,
-	WindowResized = sf::Event::Resized, 
+	WindowResized = sf::Event::Resized,
 	GainedFocus = sf::Event::GainedFocus,
-	LostFocus = sf::Event::LostFocus, 
+	LostFocus = sf::Event::LostFocus,
 	MouseEntered = sf::Event::MouseEntered,
-	MouseLeft = sf::Event::MouseLeft, 
+	MouseLeft = sf::Event::MouseLeft,
 	Closed = sf::Event::Closed,
 	TextEntered = sf::Event::TextEntered,
 	Keyboard = sf::Event::Count + 1, Mouse, Joystick,
@@ -39,7 +40,9 @@ struct EventInfo{
 
 struct EventDetails{
 	EventDetails(const std::string& l_bindName)
-		: m_name(l_bindName){ Clear(); }
+		: m_name(l_bindName){
+		Clear();
+	}
 	std::string m_name;
 
 	sf::Vector2i m_size;
@@ -108,15 +111,15 @@ public:
 	bool RemoveBinding(std::string l_name);
 
 	void SetCurrentState(StateType l_state);
-	void SetFocus(bool l_focus);
+	void SetFocus(const bool &l_focus);
 
 	// Needs to be defined in the header!
 	template<class T>
-	bool AddCallback(StateType l_state, const std::string& l_name, 
+	bool AddCallback(StateType l_state, const std::string& l_name,
 		void(T::*l_func)(EventDetails*), T* l_instance)
 	{
 		auto itr = m_callbacks.emplace(l_state, CallbackContainer()).first;
-		auto temp = std::bind(l_func,l_instance, std::placeholders::_1);
+		auto temp = std::bind(l_func, l_instance, std::placeholders::_1);
 		return itr->second.emplace(l_name, temp).second;
 	}
 

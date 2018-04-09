@@ -1,12 +1,12 @@
 #pragma once
 #include <vector>
 #include <unordered_map>
+#include "SharedContext.h"
 #include "State_Intro.h"
 #include "State_MainMenu.h"
 #include "State_Game.h"
 #include "State_Paused.h"
 #include "State_GameOver.h"
-#include "SharedContext.h"
 
 enum class StateType{ Intro = 1, MainMenu, Game, Paused, GameOver, Credits };
 

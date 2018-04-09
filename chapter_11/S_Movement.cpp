@@ -1,6 +1,7 @@
 #include "S_Movement.h"
 #include "System_Manager.h"
 #include "Map.h"
+#include "C_Movable.h"
 #include <cmath>
 
 S_Movement::S_Movement(SystemManager* l_systemMgr) 

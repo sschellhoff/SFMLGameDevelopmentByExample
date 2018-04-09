@@ -19,6 +19,7 @@ public:
 	Window* GetWindow();
 private:
 	void RestartClock();
+
 	sf::Clock m_clock;
 	sf::Time m_elapsed;
 	SharedContext m_context;

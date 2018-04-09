@@ -33,7 +33,7 @@ void EventManager::SetCurrentState(StateType l_state){
 	m_currentState = l_state;
 }
 
-void EventManager::SetFocus(bool l_focus){ m_hasFocus = l_focus; }
+void EventManager::SetFocus(const bool& l_focus){ m_hasFocus = l_focus; }
 
 void EventManager::HandleEvent(sf::Event& l_event){
 	// Handling SFML events.

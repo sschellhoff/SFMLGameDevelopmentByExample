@@ -2,8 +2,8 @@
 #define RUNNING_LINUX
 #include <iostream>
 #include <string>
-#include <algorithm>
 #include <sstream>
+#include <algorithm>
 
 namespace Utils{
 	#ifdef RUNNING_WINDOWS
