@@ -23,7 +23,7 @@ namespace Utils{
 	}
 	#elif defined RUNNING_LINUX
 	#include <unistd.h>
-	inline std::string GetWorkingDirectory(){
+	inline std::string GetWorkingDirectory2(){
 		char cwd[1024];
 		if(getcwd(cwd, sizeof(cwd)) != nullptr){
 			return std::string(cwd) + std::string("/");
@@ -33,7 +33,7 @@ namespace Utils{
 	#endif
 
 	inline std::string GetResourceDirectory(){
-		return GetWorkingDirectory() + std::string("Assets/");
+		return GetWorkingDirectory2() + std::string("Assets/");
 	}
 
 	inline void ReadQuotedString(std::stringstream& l_stream, 
