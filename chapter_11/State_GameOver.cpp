@@ -10,7 +10,7 @@ void State_GameOver::OnCreate(){
 	m_elapsed = 0;
 	m_text.setCharacterSize(16);
 	m_text.setString("You beat the game! Congratulations!");
-	m_text.setColor(sf::Color::White);
+	m_text.setFillColor(sf::Color::White);
 	m_text.setOrigin(m_text.getLocalBounds().width / 2, 
 		m_text.getLocalBounds().height / 2);
 	m_text.setPosition(400, 300);

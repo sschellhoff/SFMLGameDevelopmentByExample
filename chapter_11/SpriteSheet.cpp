@@ -61,7 +61,7 @@ void SpriteSheet::CropSprite(const sf::IntRect& l_rect){
 
 bool SpriteSheet::LoadSheet(const std::string& l_file){
 	std::ifstream sheet;
-	sheet.open(Utils::GetWorkingDirectory() + l_file);
+	sheet.open(Utils::GetResourceDirectory() + l_file);
 	if (!sheet.is_open()){
 		std::cout << "! Failed loading spritesheet: "
 			<< l_file << std::endl;

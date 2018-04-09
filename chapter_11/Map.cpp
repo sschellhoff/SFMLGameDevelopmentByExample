@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "StateManager.h"
+#include <cmath>
 
 Map::Map(SharedContext* l_context)
 	:m_context(l_context), m_defaultTile(l_context), m_maxMapSize(32, 32), m_playerId(-1)
@@ -32,7 +33,7 @@ int Map::GetPlayerId()const{ return m_playerId; }
 
 void Map::LoadMap(const std::string& l_path){
 	std::ifstream mapFile;
-	mapFile.open(Utils::GetWorkingDirectory() + l_path);
+	mapFile.open(Utils::GetResourceDirectory() + l_path);
 	if (!mapFile.is_open()){
 		std::cout << "! Failed loading map file: " << l_path << std::endl;
 		return;
@@ -109,7 +110,7 @@ void Map::LoadMap(const std::string& l_path){
 
 void Map::LoadTiles(const std::string& l_path){
 	std::ifstream tileSetFile;
-	tileSetFile.open(Utils::GetWorkingDirectory() + l_path);
+	tileSetFile.open(Utils::GetResourceDirectory() + l_path);
 	if (!tileSetFile.is_open()){
 		std::cout << "! Failed loading tile set file: " << l_path << std::endl;
 		return;

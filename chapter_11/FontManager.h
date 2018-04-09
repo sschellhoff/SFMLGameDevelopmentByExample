@@ -8,7 +8,7 @@ public:
 
 	sf::Font* Load(const std::string& l_path){
 		sf::Font* font = new sf::Font();
-		if (!font->loadFromFile(Utils::GetWorkingDirectory() + l_path))
+		if (!font->loadFromFile(Utils::GetResourceDirectory() + l_path))
 		{
 			delete font;
 			font = nullptr;

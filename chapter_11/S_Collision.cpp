@@ -1,6 +1,7 @@
 #include "S_Collision.h"
 #include "System_Manager.h"
 #include "Map.h"
+#include <cmath>
 
 S_Collision::S_Collision(SystemManager* l_systemMgr) 
 	: S_Base(System::Collision, l_systemMgr)

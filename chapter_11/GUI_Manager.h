@@ -12,7 +12,7 @@
 #include <functional>
 #include <fstream>
 
-using GUI_Interfaces = std::unordered_map<std::string, GUI_Interface*>;
+using GUI_Interfaces = std::map<std::string, GUI_Interface*>;
 using GUI_Container = std::unordered_map<StateType, GUI_Interfaces>;
 using GUI_Events = std::unordered_map<StateType, std::vector<GUI_Event>>;
 using GUI_Factory = std::unordered_map<GUI_ElementType, std::function<GUI_Element*(GUI_Interface*)>>;

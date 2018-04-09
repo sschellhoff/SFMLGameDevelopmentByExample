@@ -8,7 +8,7 @@ State_Paused::~State_Paused(){}
 
 void State_Paused::OnCreate(){
 	SetTransparent(true); // Set our transparency flag.
-	m_font.loadFromFile(Utils::GetWorkingDirectory() + "media/Fonts/arial.ttf");
+	m_font.loadFromFile(Utils::GetResourceDirectory() + "media/Fonts/arial.ttf");
 	m_text.setFont(m_font);
 	m_text.setString(sf::String("PAUSED"));
 	m_text.setCharacterSize(14);

@@ -1,6 +1,6 @@
 #include "Game.h"
 
-void main(int argc, void** argv[]){
+int main(int argc, char* argv[]){
 	// Program entry point.
 	{
 		Game game;

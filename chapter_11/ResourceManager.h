@@ -78,7 +78,7 @@ private:
 
 	void LoadPaths(const std::string& l_pathFile){
 		std::ifstream paths;
-		paths.open(Utils::GetWorkingDirectory() + l_pathFile);
+		paths.open(Utils::GetResourceDirectory() + l_pathFile);
 		if(paths.is_open()){
 			std::string line;
 			while(std::getline(paths,line)){
