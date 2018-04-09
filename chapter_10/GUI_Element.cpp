@@ -52,7 +52,7 @@ void GUI_Element::ApplyTextStyle(){
 	const GUI_Style& CurrentStyle = m_style[m_state];
 	if (CurrentStyle.m_textFont != ""){
 		m_visual.m_text.setFont(*fonts->GetResource(CurrentStyle.m_textFont));
-		m_visual.m_text.setColor(CurrentStyle.m_textColor);
+		m_visual.m_text.setFillColor(CurrentStyle.m_textColor);
 		m_visual.m_text.setCharacterSize(CurrentStyle.m_textSize);
 		if (CurrentStyle.m_textCenterOrigin){
 			sf::FloatRect rect = m_visual.m_text.getLocalBounds();

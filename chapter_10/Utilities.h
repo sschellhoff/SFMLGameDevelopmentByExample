@@ -1,5 +1,5 @@
 #pragma once
-#define RUNNING_WINDOWS
+#define RUNNING_LINUX
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -31,6 +31,10 @@ namespace Utils{
 		return "";
 	}
 	#endif
+
+	inline std::string GetResourceDirectory(){
+		return GetWorkingDirectory() + std::string("Assets/");
+	}
 
 	inline void ReadQuotedString(std::stringstream& l_stream, 
 		std::string& l_string)
