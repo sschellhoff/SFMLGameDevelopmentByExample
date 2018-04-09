@@ -49,4 +49,9 @@ cd chapter_09/
 ./build.sh
 cd ..
 
+echo "building chapter_10"
+cd chapter_10/
+./build.sh
+cd ..
+
 echo "done"
