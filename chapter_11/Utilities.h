@@ -44,6 +44,10 @@ namespace Utils{
 			while (l_string.at(l_string.length() - 1) != '"' || !l_stream.eof()){
 				std::string str;
 				l_stream >> str;
+				if(l_stream.fail()) {
+					l_stream.clear();
+					break;
+				}
 				l_string.append(" " + str);
 			}
 		}
