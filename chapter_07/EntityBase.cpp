@@ -118,6 +118,16 @@ void EntityBase::Update(float l_dT){
 		frictionValue = m_friction;
 	}
 
+	// Debug
+	if(m_entityManager->GetContext()->m_debugOverlay.Debug()){
+		sf::Vector2f tempPos(m_AABB.left, m_AABB.top);
+		sf::RectangleShape* rect = new sf::RectangleShape(sf::Vector2f(m_AABB.width,m_AABB.height));
+		rect->setPosition(tempPos);
+		rect->setFillColor(sf::Color(0,0,255,150));
+		m_entityManager->GetContext()->m_debugOverlay.Add(rect);
+	}
+	// End debug.
+
 	float friction_x = (m_speed.x * frictionValue.x) * l_dT;
 	float friction_y = (m_speed.y * frictionValue.y) * l_dT;
 	ApplyFriction(friction_x, friction_y);

@@ -8,8 +8,9 @@
 #include "Utilities.h"
 #include "SharedContext.h"
 #include "BaseState.h"
+#include "Character.h"
 
-enum Sheet{ Tile_Size = 32, Sheet_Width = 256, Sheet_Height = 256 };
+enum Sheet{ Tile_Size = 16, Sheet_Width = 336, Sheet_Height = 320 };
 
 using TileID = unsigned int;
 
@@ -67,6 +68,7 @@ public:
 	unsigned int GetTileSize()const;
 	const sf::Vector2u& GetMapSize()const;
 	const sf::Vector2f& GetPlayerStart()const;
+	std::string GetMusicName();
 
 	void LoadMap(const std::string& l_path);
 	void LoadNext();
@@ -83,6 +85,9 @@ private:
 	TileSet m_tileSet;
 	TileMap m_tileMap;
 	sf::Sprite m_background;
+	//sf::Sprite m_health;
+	std::vector<sf::Sprite> hearts;
+	int m_characterHp;
 	TileInfo m_defaultTile;
 	sf::Vector2u m_maxMapSize;
 	sf::Vector2f m_playerStart;
@@ -94,4 +99,6 @@ private:
 	std::string m_backgroundTexture;
 	BaseState* m_currentState;
 	SharedContext* m_context;
+
+	std::string m_musicName;
 };

@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 class StateManager;
 
 class BaseState{
-friend class StateManager;
+	friend class StateManager;
 public:
 	BaseState(StateManager* l_stateManager) 
 		:m_stateMgr(l_stateManager), m_transparent(false),
@@ -30,4 +31,7 @@ protected:
 	bool m_transparent;
 	bool m_transcendent;
 	sf::View m_view;
+	
+	// each map has 1 song only (loop)
+	sf::Music music;
 };

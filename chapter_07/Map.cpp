@@ -9,6 +9,8 @@ Map::Map(SharedContext* l_context, BaseState* l_currentState)
 {
 	m_context->m_gameMap = this;
 	LoadTiles("tiles.cfg");
+
+
 }
 
 Map::~Map(){
@@ -26,6 +28,7 @@ float Map::GetGravity()const{ return m_mapGravity; }
 unsigned int Map::GetTileSize()const{ return Sheet::Tile_Size; }
 const sf::Vector2u& Map::GetMapSize()const{ return m_maxMapSize; }
 const sf::Vector2f& Map::GetPlayerStart()const{ return m_playerStart; }
+std::string Map::GetMusicName(){ return m_musicName; }
 
 void Map::LoadMap(const std::string& l_path){
 	std::ifstream mapFile;
@@ -47,6 +50,9 @@ void Map::LoadMap(const std::string& l_path){
 			if (tileId < 0){ std::cout << "! Bad tile id: " << tileId << std::endl; continue; }
 			auto itr = m_tileSet.find(tileId);
 			if (itr == m_tileSet.end()){ std::cout << "! Tile id(" << tileId << ") was not found in tileset." << std::endl; continue; }
+			
+			//if(tileId == 1 || tileId == 4){std::cout <<"->added "<<tileId<<std::endl;}
+
 			sf::Vector2i tileCoords;
 			keystream >> tileCoords.x >> tileCoords.y;
 			if (tileCoords.x > m_maxMapSize.x || tileCoords.y > m_maxMapSize.y){
@@ -60,11 +66,15 @@ void Map::LoadMap(const std::string& l_path){
 			{
 				// Duplicate tile detected!
 				std::cout << "! Duplicate tile! : " << tileCoords.x 
-					<< "" << tileCoords.y << std::endl;
+					<< " " << tileCoords.y << " - " << ConvertCoords(tileCoords.x,tileCoords.y) << std::endl;
 				delete tile;
 				tile = nullptr;
 				continue;
 			}
+
+			// std::cout << "> Adding tile : " << tileCoords.x 
+			// 	<< " " << tileCoords.y << " - "<< ConvertCoords(tileCoords.x,tileCoords.y) << std::endl;
+					
 			std::string warp;
 			keystream >> warp;
 			tile->m_warp = false;
@@ -88,6 +98,8 @@ void Map::LoadMap(const std::string& l_path){
 			keystream >> m_maxMapSize.x >> m_maxMapSize.y;
 		} else if(type == "GRAVITY"){
 			keystream >> m_mapGravity;
+		} else if(type == "MUSIC"){
+			keystream >> m_musicName;
 		} else if(type == "DEFAULT_FRICTION"){
 			keystream >> m_defaultTile.m_friction.x >> m_defaultTile.m_friction.y;
 		} else if(type == "NEXTMAP"){
@@ -99,8 +111,30 @@ void Map::LoadMap(const std::string& l_path){
 			if (playerId < 0){ continue; }
 			float playerX = 0; float playerY = 0;
 			keystream >> playerX >> playerY;
+
+			std::cout<<"PLAYER POS: " << playerX << " " << playerY << std::endl;
+
 			entityMgr->Find(playerId)->SetPosition(playerX,playerY);
 			m_playerStart = sf::Vector2f(playerX, playerY);
+
+			// Set up healthbar
+			m_characterHp = ((Character*) (entityMgr->Find(playerId)))->GetHitpoints();
+
+			m_context->m_characterCurrentHealth = m_characterHp;
+						
+			if(m_context->m_textureManager->RequireResource("HeartFull") && m_context->m_textureManager->RequireResource("HeartEmpty")){
+				std::cout<<"PLAYER HEALTH" << std::endl;
+				sf::Texture* healthTexture = m_context->m_textureManager->GetResource("HeartFull");
+				for(int i=0; i<m_characterHp; i++){
+					sf::Sprite sprite;
+					sprite.setTexture(*healthTexture);
+					sprite.setScale(0.5,0.5);
+					hearts.push_back(sprite);
+				}
+			}
+
+			std::cout<<"hitpoints " << m_characterHp << std::endl;
+
 		} else if(type == "ENEMY"){
 			std::string enemyName;
 			keystream >> enemyName;
@@ -146,12 +180,13 @@ void Map::Update(float l_dT){
 	if(m_loadNextMap){
 		PurgeMap();
 		m_loadNextMap = false;
-		if(m_nextMap != ""){
-			LoadMap("media/maps/"+m_nextMap);
-		} else {
-			m_currentState->GetStateManager()->SwitchTo(StateType::GameOver);
-		}
-		m_nextMap = "";
+		m_currentState->GetStateManager()->SwitchTo(StateType::LevelCompleted);
+		// if(m_nextMap != ""){
+		// 	LoadMap("media/maps/"+m_nextMap);
+		// } else {
+		// 	m_currentState->GetStateManager()->SwitchTo(StateType::GameOver);
+		// }
+		// m_nextMap = "";
 	}
 	sf::FloatRect viewSpace = m_context->m_wind->GetViewSpace();
 	m_background.setPosition(viewSpace.left, viewSpace.top);
@@ -194,10 +229,31 @@ void Map::Draw(){
 			// End debug.
 		}
 	}
+
+	if(m_context->m_characterCurrentHealth < m_characterHp){
+		sf::Texture* healthTexture = m_context->m_textureManager->GetResource("HeartEmpty");
+		for(int i=1; i<=(m_characterHp - m_context->m_characterCurrentHealth);i++){
+			hearts[hearts.size()-i].setTexture(*healthTexture);
+		}
+		
+	}
+
+	sf::Texture* healthTexture = m_context->m_textureManager->GetResource("HeartFull");
+	for(int i=0; i < m_context->m_characterCurrentHealth; i++){
+		hearts[i].setTexture(*healthTexture);
+	}
+
+
+	// Draw Healthbar.
+	for(int i=0; i<hearts.size(); i++){
+		hearts[i].setPosition(viewSpace.left + 32*i , viewSpace.top);
+		
+		l_wind->draw(hearts[i]);
+	}
 }
 
 unsigned int Map::ConvertCoords(unsigned int l_x, unsigned int l_y){
-	return (l_x * m_maxMapSize.x) + l_y; // Row-major.
+	return (l_x * m_maxMapSize.y) + l_y; // Row-major.
 }
 
 void Map::PurgeMap(){
@@ -211,6 +267,9 @@ void Map::PurgeMap(){
 	if (m_backgroundTexture == ""){ return; }
 	m_context->m_textureManager->ReleaseResource(m_backgroundTexture);
 	m_backgroundTexture = "";
+
+	m_context->m_textureManager->ReleaseResource("HeartFull");
+	m_context->m_textureManager->ReleaseResource("HeartEmpty");
 }
 
 void Map::PurgeTileSet(){

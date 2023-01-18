@@ -1,2 +1,0 @@
-#!/bin/bash
-g++ Main.cpp Game.cpp Anim_Base.cpp Anim_Directional.cpp EventManager.cpp SpriteSheet.cpp State_Game.cpp State_GameOver.cpp State_Intro.cpp State_MainMenu.cpp State_Paused.cpp StateManager.cpp Window.cpp -lsfml-graphics -lsfml-window -lsfml-system -o main

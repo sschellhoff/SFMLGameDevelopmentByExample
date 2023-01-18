@@ -7,19 +7,25 @@ State_MainMenu::State_MainMenu(StateManager* l_stateManager)
 State_MainMenu::~State_MainMenu(){}
 
 void State_MainMenu::OnCreate(){
-	m_font.loadFromFile(Utils::GetResourceDirectory() + "media/Fonts/arial.ttf");
+
+	sf::Vector2u windowSize = m_stateMgr->GetContext()
+		->m_wind->GetRenderWindow()->getSize();
+
+	m_font.loadFromFile(Utils::GetResourceDirectory() + "media/Fonts/FORCED_SQUARE.ttf");
 	m_text.setFont(m_font);
 	m_text.setString(sf::String("MAIN MENU:"));
-	m_text.setCharacterSize(18);
+	m_text.setCharacterSize(30);
 
 	sf::FloatRect textRect = m_text.getLocalBounds();
 	m_text.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
 
-	m_text.setPosition(400,100);
+	m_text.setPosition(windowSize.x / 2.0f, windowSize.y / 10.0f);
+
+
 
 	m_buttonSize = sf::Vector2f(300.0f,32.0f);
-	m_buttonPos = sf::Vector2f(400,200);
+	m_buttonPos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 2.0f);
 	m_buttonPadding = 4; // 4px.
 
 	std::string str[3];
@@ -52,7 +58,7 @@ void State_MainMenu::OnCreate(){
 
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
-	evMgr->AddCallback(StateType::MainMenu, "Mouse_Left",&State_MainMenu::MouseClick,this);
+	evMgr->AddCallback(StateType::MainMenu, "Mouse_Left", &State_MainMenu::MouseClick, this);
 }
 
 void State_MainMenu::OnDestroy(){
@@ -62,17 +68,17 @@ void State_MainMenu::OnDestroy(){
 }
 
 void State_MainMenu::Activate(){
-	if (m_stateMgr->HasState(StateType::Game)
-		&& m_labels[0].getString() != "RESUME")
-	{
-		m_labels[0].setString(sf::String("RESUME"));
-	} else {
-		m_labels[0].setString(sf::String("PLAY"));
-	}
+	// if (m_stateMgr->HasState(StateType::Game)
+	// 	&& m_labels[0].getString() != "RESUME")
+	// {
+	// 	m_labels[0].setString(sf::String("RESUME"));
+	// } else {
+	// 	m_labels[0].setString(sf::String("PLAY"));
+	// }
 
-	sf::FloatRect rect = m_labels[0].getLocalBounds();
-		m_labels[0].setOrigin(rect.left + rect.width / 2.0f,
-		rect.top + rect.height / 2.0f);
+	// sf::FloatRect rect = m_labels[0].getLocalBounds();
+	// 	m_labels[0].setOrigin(rect.left + rect.width / 2.0f,
+	// 	rect.top + rect.height / 2.0f);
 }
 
 void State_MainMenu::MouseClick(EventDetails* l_details){
@@ -88,7 +94,8 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 			mousePos.y<=m_rects[i].getPosition().y + halfY)
 		{
 			if(i == 0){
-				m_stateMgr->SwitchTo(StateType::Game);
+				//m_stateMgr->SwitchTo(StateType::Game);
+				m_stateMgr->SwitchTo(StateType::ChooseMap);
 			} else if(i == 1){
 				// Credits state.
 			} else if(i == 2){

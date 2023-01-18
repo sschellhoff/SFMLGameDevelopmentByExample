@@ -1,2 +1,0 @@
-#!/bin/bash
-g++ Anim_Base.cpp GUI_Element.cpp GUI_Textfield.cpp S_Collision.cpp S_SheetAnimation.cpp State_MainMenu.cpp Anim_Directional.cpp GUI_Interface.cpp S_Control.cpp S_State.cpp StateManager.cpp Entity_Manager.cpp GUI_Label.cpp Main.cpp S_Movement.cpp State_Game.cpp State_Paused.cpp EventManager.cpp GUI_Manager.cpp Map.cpp SpriteSheet.cpp State_GameOver.cpp System_Manager.cpp Game.cpp GUI_Scrollbar.cpp S_Base.cpp S_Renderer.cpp State_Intro.cpp Window.cpp -lsfml-graphics -lsfml-window -lsfml-system -o main

@@ -21,7 +21,23 @@ void State_Game::OnCreate(){
 	m_stateMgr->GetContext()->m_wind->GetRenderWindow()->setView(m_view);
 
 	m_gameMap = new Map(m_stateMgr->GetContext(), this);
-	m_gameMap->LoadMap("media/Maps/map1.map");
+
+	int level = m_stateMgr->GetContext()->m_mapNumber;
+
+	std::cout<<"Will load map "<<level<<std::endl;
+
+	// i know this is not ideal 
+	if(level==1)
+		m_gameMap->LoadMap("media/Maps/map1.map");
+	else if(level==2)
+		m_gameMap->LoadMap("media/Maps/map2.map");
+
+	
+	music.openFromFile("Resources/MusicTracks/" + m_gameMap->GetMusicName());
+	music.setVolume(50.0f);
+	music.setLoop(true);
+	
+	
 }
 
 void State_Game::OnDestroy(){
@@ -42,6 +58,14 @@ void State_Game::Update(const sf::Time& l_time){
 		std::cout << "Respawning player..." << std::endl;
 		context->m_entityManager->Add(EntityType::Player,"Player");
 		player = context->m_entityManager->Find("Player");
+
+		// set currenthp
+		context->m_characterCurrentHealth = ((Character*) player)->GetHitpoints();
+
+		std::cout<< "SC health:" <<context->m_characterCurrentHealth<<std::endl;
+
+		std::cout<<m_gameMap->GetPlayerStart().x << " " << m_gameMap->GetPlayerStart().y << std::endl;
+
 		player->SetPosition(m_gameMap->GetPlayerStart());
 	} else {
 		m_view.setCenter(player->GetPosition());
@@ -74,8 +98,12 @@ void State_Game::Pause(EventDetails* l_details){
 	m_stateMgr->SwitchTo(StateType::Paused);
 }
 
-void State_Game::Activate(){}
-void State_Game::Deactivate(){}
+void State_Game::Activate(){
+	music.play();
+}
+void State_Game::Deactivate(){
+	music.pause();
+}
 // Test/debug methods.
 void State_Game::ToggleOverlay(EventDetails* l_details){
 	m_stateMgr->GetContext()->m_debugOverlay.SetDebug(!m_stateMgr->GetContext()->m_debugOverlay.Debug());

@@ -1,6 +1,6 @@
 Texture RatSprite
 Size 32 32
-Scale 0.5 0.5
+Scale 0.8 0.8
 |Type|Name|StartFrame|EndFrame|Row|FrameTime|FrameActionStart|FrameActionEnd|
 AnimationType Directional
 Animation Idle 0 8 0 0.2 -1 -1

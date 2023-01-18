@@ -24,7 +24,7 @@ void Window::Setup(const std::string& title, const sf::Vector2u& size){
 }
 
 void Window::Create(){
-	sf::Uint32 style = sf::Style::Default;
+	sf::Uint32 style = sf::Style::Close;
 	if(m_isFullscreen){ style = sf::Style::Fullscreen; }
 
 	m_window.create(sf::VideoMode(m_windowSize.x,m_windowSize.y,32),m_windowTitle,style);

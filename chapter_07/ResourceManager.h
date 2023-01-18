@@ -88,6 +88,8 @@ private:
 				keystream >> pathName;
 				keystream >> path;
 				m_paths.emplace(pathName,path);
+
+				std::cout<<path<<std::endl;
 			}
 			paths.close();
 			return;

@@ -1,6 +1,7 @@
 #pragma once
 #include "EntityBase.h"
 #include "SpriteSheet.h"
+#include <SFML/Audio.hpp>
 
 class Character : public EntityBase{
 friend class EntityManager;
@@ -21,6 +22,10 @@ public:
 
 	virtual void Update(float l_dT);
 	void Draw(sf::RenderWindow* l_wind);
+
+	int GetHitpoints();
+
+
 protected:
 	void UpdateAttackAABB();
 	void Animate();
@@ -28,7 +33,17 @@ protected:
 	float m_jumpVelocity;
 
 	int m_hitpoints;
+	int m_currentHitpoints;
 
 	sf::FloatRect m_attackAABB;
 	sf::Vector2f m_attackAABBoffset;
+
+	sf::SoundBuffer m_bufferAttack;
+	sf::SoundBuffer m_bufferHurt;
+	sf::SoundBuffer m_bufferDie;
+
+	sf::Sound m_soundAttack;
+	sf::Sound m_soundHurt;
+	sf::Sound m_soundDie;
+	
 };

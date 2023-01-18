@@ -2,6 +2,7 @@
 #include "BaseState.h"
 #include "Map.h"
 #include "EventManager.h"
+#include <SFML/Audio.hpp>
 
 class State_Game : public BaseState{
 public:
@@ -22,4 +23,5 @@ public:
 	void ToggleOverlay(EventDetails* l_details);
 private:
 	Map* m_gameMap;
+
 };

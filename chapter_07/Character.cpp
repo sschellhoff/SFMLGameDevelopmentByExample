@@ -5,7 +5,7 @@
 Character::Character(EntityManager* l_entityMgr)
 	:EntityBase(l_entityMgr), 
 	m_spriteSheet(m_entityManager->GetContext()->m_textureManager),
-	m_jumpVelocity(250), m_hitpoints(5){ m_name = "Character"; }
+	m_jumpVelocity(250), m_hitpoints(5), m_currentHitpoints(5){ m_name = "Character"; }
 
 Character::~Character(){ }
 
@@ -28,14 +28,23 @@ void Character::Attack(){
 		GetState() == EntityState::Hurt || GetState() == EntityState::Attacking)
 	{ return; }
 	SetState(EntityState::Attacking);
+	m_soundAttack.play();
 }
 
 void Character::GetHurt(const int& l_damage){
 	if (GetState() == EntityState::Dying || GetState() == EntityState::Hurt){ return; }
-	m_hitpoints = (m_hitpoints - l_damage > 0 ? m_hitpoints - l_damage : 0);
-	if (m_hitpoints){ SetState(EntityState::Hurt); }
-	else { SetState(EntityState::Dying); }
+	m_currentHitpoints = (m_currentHitpoints - l_damage > 0 ? m_currentHitpoints - l_damage : 0);
+	if(m_type == EntityType::Player)
+		m_entityManager->GetContext()->m_characterCurrentHealth = m_currentHitpoints;
+	if (m_currentHitpoints){ SetState(EntityState::Hurt); }
+	else { 
+		SetState(EntityState::Dying);
+		std::cout<<"died"<<std::endl;
+		m_soundDie.play();
+	}
 }
+
+int Character::GetHitpoints(){ return m_hitpoints;}
 
 void Character::Load(const std::string& l_path){
 	std::ifstream file;
@@ -55,6 +64,7 @@ void Character::Load(const std::string& l_path){
 			m_spriteSheet.LoadSheet("media/Spritesheets/" + path);
 		} else if(type == "Hitpoints"){
 			keystream >> m_hitpoints;
+			m_currentHitpoints = m_hitpoints;
 		} else if(type == "BoundingBox"){
 			sf::Vector2f boundingSize;
 			keystream >> boundingSize.x >> boundingSize.y;

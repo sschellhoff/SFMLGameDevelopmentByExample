@@ -3,12 +3,11 @@
 int main(int argc, char* argv[]){
 	// Program entry point.
 	{
-		Game game;
+		Game game(900,675);
 		while(!game.GetWindow()->IsDone()){
 			game.Update();
 			game.Render();
 			game.LateUpdate();
 		}
 	}
-	system("PAUSE");
 }
