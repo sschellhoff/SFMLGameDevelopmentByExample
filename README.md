@@ -1,4 +1,4 @@
-# SFML Game Simple 2D Game
+# SFML Simple 2D Game
 
 ## Intro
 This is game based on the source code provided by the book **SFML Game Development By Example (ISBN 9781785287343)** (https://www.packtpub.com/product/sfml-game-development-by-example/9781785287343).

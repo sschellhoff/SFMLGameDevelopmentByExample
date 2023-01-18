@@ -25,10 +25,20 @@ struct TileInfo{
 		m_texture = l_texture;
 		m_id = l_id;
 		m_sprite.setTexture(*tmgr->GetResource(m_texture));
-		sf::IntRect tileBoundaries(m_id % (Sheet::Sheet_Width / Sheet::Tile_Size) * Sheet::Tile_Size,
-			m_id / (Sheet::Sheet_Height / Sheet::Tile_Size) * Sheet::Tile_Size,
+		// sf::IntRect tileBoundaries(m_id % (Sheet::Sheet_Width / Sheet::Tile_Size) * Sheet::Tile_Size,
+		// 	m_id / (Sheet::Sheet_Height / Sheet::Tile_Size) * Sheet::Tile_Size,
+		// 	Sheet::Tile_Size,Sheet::Tile_Size);
+
+		int y = m_id / (Sheet::Sheet_Width / Sheet::Tile_Size);
+		int x = m_id - (y * (Sheet::Sheet_Width / Sheet::Tile_Size));
+
+		sf::IntRect tileBoundaries(x * Sheet::Tile_Size,
+			y * Sheet::Tile_Size,
 			Sheet::Tile_Size,Sheet::Tile_Size);
+		
 		m_sprite.setTextureRect(tileBoundaries);
+		std::cout<<"added tile with id "<<m_id<<std::endl;
+		std::cout << tileBoundaries.top << " " << tileBoundaries.left << std::endl;
 	}
 
 	~TileInfo(){
