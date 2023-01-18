@@ -11,7 +11,7 @@ NOTE: The project is still under development!!
 ### Linux
 ```
 git clone https://github.com/mataktelis11/SFMLGameDevelopmentByExample.git
-cd SFMLGameDevelopmentByExample/chapter_07/
+cd SFMLGameDevelopmentByExample/src/
 ./build.sh 
 ```
 This will generate an executable file called **main** in the current dir.
@@ -65,3 +65,6 @@ Huge shout out to all those amazing creators!
 
 ## Important
 I do **NOT** own the mentioned book, and this project is not made to be sold in any way.
+
+## License
+GPL-3.0 license - Check the LICENSE.md file.
