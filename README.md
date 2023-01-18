@@ -1,12 +1,11 @@
 # SFML Game Simple 2D Game
 
 ## Intro
-This is game based on the source code provided by the book **SFML 
-SFML Game Development By Example (ISBN 9781785287343)** (https://www.packtpub.com/product/sfml-game-development-by-example/9781785287343).
+This is game based on the source code provided by the book **SFML Game Development By Example (ISBN 9781785287343)** (https://www.packtpub.com/product/sfml-game-development-by-example/9781785287343).
 
 This repository is a fork from **sschellhoff** (https://github.com/sschellhoff/SFMLGameDevelopmentByExample) who provided the original book's source code in a runnable version.
 
-NOTE: The project is still under develpment!!
+NOTE: The project is still under development!!
 
 ## Instructions
 ### Linux
@@ -23,11 +22,12 @@ coming soon....
 This is game is an improvement of the book's **Chapter 7**. More specifically the following additions have been made:
 - Added a healthbar for the player.
 - Added a new spritesheet for the player.
-- Added music and sounds (not with the book's sound manager but with a much less sofisticated implementation)
+- Added music and sounds (not with the book's sound manager but with a much less sophisticated implementation)
 - Added a new tileset (16 * 16)
+- Added a Python script that generates .map files from .png images (This makes it easier to create a map)
 - Minor other changes
 
-This project started because I wanted to create a video game from scratch. Thankfully the book does a good job providing and explaining a templete that can be a good start as my very first game. I strongly recommend you check out this book if you want to see what game development really is.
+This project started because I wanted to create a video game from scratch. Thankfully the book does a good job providing and explaining a template that can be a good start as my very first game. I strongly recommend you check out this book if you want to see what game development really is.
 
 I chose Chapter 7 as I feel it is a good middle ground for everyone how have read the book. Do not expect this to be the most amazing game ever.
 
