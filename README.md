@@ -1,5 +1,8 @@
 # SFML Simple 2D Game
 
+<img src="/docs/screenshots/1.png" alt="Alt text" title="In-Development Screenshot">
+
+
 ## Intro
 This is game based on the source code provided by the book **SFML Game Development By Example (ISBN 9781785287343)** (https://www.packtpub.com/product/sfml-game-development-by-example/9781785287343).
 

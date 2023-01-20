@@ -1,1 +1,9 @@
 src/main
+docs/latex/*.aux
+docs/latex/*.log
+docs/latex/*.out
+docs/latex/*.synctex.gz
+docs/latex/*.toc
+docs/latex/_minted-documentation
+docs/latex/*.nav
+docs/latex/*.snm

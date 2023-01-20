@@ -1,0 +1,164 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,greek]{babel}
+
+%\usetheme{Madrid}
+\usetheme{CambridgeUS}
+\usecolortheme{orchid}
+%\usecolortheme{default}
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\setbeamertemplate{navigation symbols}{}
+
+\title[\foreignlanguage{english}{SFML Game Development}]{Ανάπτυξη \foreignlanguage{english}{2D} Παιχνιδιού με \foreignlanguage{english}{SFML}}
+\author{Αριστοτέλης Ματακιάς}
+
+\institute[ΠαΠει] % (optional)
+{
+	Πανεπιστήμιο Πειραιώς\\[1cm]Επιβλέπων καθηγητής: Θεμιστοκλής Παναγιωτόπουλος
+}
+
+\date[Ιανουάριος 2023] % (optional)
+{Ιανουάριος 2023}
+
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Περιεχόμενα}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+%------------------------------------------------------------
+
+
+
+\begin{document}
+	
+	
+	%The next statement creates the title page.
+	\frame{\titlepage}
+	
+	
+	%---------------------------------------------------------
+	%This block of code is for the table of contents after
+	%the title page
+	\begin{frame}
+		\frametitle{Περιεχόμενα}
+		\tableofcontents
+	\end{frame}
+	%---------------------------------------------------------
+	
+%	
+%	\section{Βασικές Έννοιες-Ορισμοί}
+%	
+%	%---------------------------------------------------------
+%	%Changing visivility of the text
+%	\begin{frame}
+%		\frametitle{Τι είναι ένα \foreignlanguage{english}{Knowledge Graph}}
+%		
+%		\begin{block}{Ορισμός}
+%			Ένα \textbf{γράφημα γνώσης} (\textbf{\foreignlanguage{english}{Knowledge Graph}}), γνωστό και ως \textbf{σημασιολογικό δίκτυο} (\textbf{\foreignlanguage{english}{semantic network}}), είναι ένα δίκτυο \textbf{οντοτήτων} (\textbf{\foreignlanguage{english}{entities}}) του πραγματικού κόσμου — π.χ. αντικείμενα, γεγονότα, καταστάσεις ή έννοιες — και απεικονίζει τη \textbf{σχέση} μεταξύ τους. Αυτές οι πληροφορίες αποθηκεύονται συνήθως σε μια βάση δεδομένων και αναπαρίστανται με δομή γράφων.
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	\begin{frame}
+%		\frametitle{Η Δομή ενός \foreignlanguage{english}{Knowledge Graph}}
+%		Ένα \textbf{γράφημα γνώσης} αποτελείται από τρία συστατικά μέρη:
+%		\begin{itemize}
+%			\item κόμβους (\foreignlanguage{english}{nodes})
+%			\item ακμές (\foreignlanguage{english}{edges})
+%			\item ετικέτες (\foreignlanguage{english}{labels})
+%		\end{itemize}
+%		
+%		Οποιοδήποτε αντικείμενο, περιοχή ή άνθρωπος, κλπ μπορεί να αποτελεί έναν κόμβο. Μια ακμή δηλώνει την σχέση η οποία υπάρχει ανάμεσα σε δύο κόμβους.\\
+%		
+%		
+%		
+%	\end{frame}
+%	
+%	\begin{frame}{Η Δομή ενός \foreignlanguage{english}{Knowledge Graph}}
+%		
+%		Παρακάτω φαίνεται ένα απλό γράφημα γνώσης, που αποτελείται από δύο κόμβους και μία ακμή, με τις αντίστοιχες ετικέτες Α, Β και \foreignlanguage{english}{C}.
+%		
+%		\begin{figure}
+%			\centering
+%			\includegraphics[width=0.67\textwidth]{g0.png}
+%			%\caption{Ένα απλό γράφημα γνώσης}
+%			%\label{fig:question}
+%		\end{figure}
+%		
+%		Τα \textbf{Α} και \textbf{Β} αντιπροσωπεύουν οντότητες και το \textbf{\foreignlanguage{english}{C}} αντιπροσωπεύει την ιδιότητα ανάμεσα στις δύο οντότητες.
+%		
+%		%Το \textbf{Α} αντιπροσωπεύει το υποκείμενο, το \textbf{\foreignlanguage{english}{C}} αντιπροσωπεύει το κατηγόρημα, το \textbf{Β}  αντιπροσωπεύει το αντικείμενο
+%		
+%		Ας δούμε ορισμένα παραδείγματα.
+%	\end{frame}
+%	
+%	
+%	\begin{frame}{Η Δομή ενός \foreignlanguage{english}{Knowledge Graph}}
+%		
+%		\begin{figure}
+%			\centering
+%			\includegraphics[width=0.67\textwidth]{g0.png}
+%			%\caption{Ένα απλό γράφημα γνώσης}
+%			%\label{fig:question}
+%		\end{figure}
+%		
+%		\begin{block}{Σημαντικό}
+%			Παρατηρούμε ότι η ακμή σχεδιάζεται με ένα βέλος, καθώς τα γραφήματα γνώσης είναι αποκλειστικά \textbf{κατευθυνόμενα}. Η κατεύθυνση του βέλους καθορίζει το είδος της σχέσης ανάμεσα στους κόμβους, το οποίο θα γίνει κατανοητό στα παραδείγματα που ακολουθούν.
+%		\end{block}
+%		
+%		
+%	\end{frame}
+%	
+%	
+%	
+%	
+%	
+%	\begin{frame}{Παραδείγματα}
+%		
+%		\begin{figure}
+%			\centering
+%			\includegraphics[width=0.67\textwidth]{g1.png}
+%			%\caption{Παράδειγμα γραφήματος γνώσης (1)}
+%			%\label{fig:question}
+%		\end{figure}
+%		
+%		Το γράφημα αυτό διαβάζεται ως: "\foreignlanguage{english}{Da Vinci painted Mona Liza}"
+%		
+%	\end{frame}
+%	
+%	\begin{frame}{Η σημαντικότητα των \foreignlanguage{english}{Knowledge Graphs}}
+%		
+%		\begin{itemize}
+%			\item<1-> Αυτό που κάνει σημαντικό ένα γράφημα γνώσης, είναι ότι σε αντίθεση με μια απλή βάση δεδομένων που συμπληρώνεται και τελικά παραμένει αδρανής, ένα γράφημα γνώσης ανανεώνεται με κάθε εισαγωγή νέων δεδομένων και παρέχει \textbf{νέες ιδέες και συμπεράσματα}.
+%			
+%			\item<2-> Καθώς αναπαρίσταται σε γραφική μορφή, είναι εύκολο για την \textbf{οντολογία} (\textbf{\foreignlanguage{english}{ontology}}) να επεκταθεί και να αναθεωρηθεί όταν φτάνουν νέα δεδομένα.
+%			
+%			\begin{block}{Οντολογία - Ορισμός}
+%				Μια \textbf{οντολογία} περιγράφει τους τύπους, τις ιδιότητες και τις αλληλεπιδράσεις μεταξύ οντοτήτων. Είναι ένα σύνολο αξιωμάτων που ορίζουν τη γνώση σε έναν συγκεκριμένο τομέα.
+%			\end{block}
+%			
+%			
+%		\end{itemize}
+%		
+%	\end{frame}
+	
+	
+	\begin{frame}
+		
+		Ευχαριστούμε για την προσοχή σας!
+		
+	\end{frame}
+	
+	
+\end{document}
