@@ -1,5 +1,5 @@
 #include "Game.h"
-Game::Game(int x, int y): m_window("Chapter 6", sf::Vector2u(x, y)),
+Game::Game(int x, int y): m_window("Alpha Version", sf::Vector2u(x, y)),
 	m_stateManager(&m_context), m_entityManager(&m_context, 100)
 {
 	m_clock.restart();

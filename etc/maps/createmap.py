@@ -2,7 +2,7 @@ from PIL import Image
 from numpy import asarray
 
 # file names
-image_name = "new01.png"
+image_name = "logo.png"
 map_name = "map1.map"
 
 # map parameters (no SPACEs)

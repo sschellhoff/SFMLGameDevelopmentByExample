@@ -56,6 +56,8 @@ Before checking out the source code I strongly recommend to read the book first 
     - transition explosion - Cristian Changing
 4. Backgrounds:
     - https://ansimuz.itch.io/mountain-dusk-parallax-background - Author: ansimuz
+5. Fonts:
+    - All fonts in the game's Resources are from https://www.dafont.com/
 
 
 Huge shout out to all those amazing creators!
