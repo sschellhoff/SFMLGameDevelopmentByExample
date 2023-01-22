@@ -61,6 +61,14 @@ for i in range(width):
             f.write("\n")
             continue
 
+        if pixel[0]==255 and pixel[1]==255 and pixel[2]==2:
+            f.write("ENEMY Skeleton ")
+            f.write(str(j*16))
+            f.write(" ")
+            f.write(str(i*16))
+            f.write("\n")
+            continue
+
         if pixel[0]==0 and pixel[1]==0 and pixel[2]==0 and pixel[3]==0:
             continue
 

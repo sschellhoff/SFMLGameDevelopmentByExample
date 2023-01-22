@@ -1,0 +1,11 @@
+Texture SkeletonSprite
+Size 150 71
+Scale 1 1
+|Type|Name|StartFrame|EndFrame|Row|FrameTime|FrameActionStart|FrameActionEnd|
+AnimationType Directional
+Animation Idle 0 3 4 0.2 -1 -1
+Animation Walk 0 3 8 0.1 -1 -1
+Animation Jump 0 3 8 0.2 -1 -1
+Animation Attack 0 7 0 0.03 5 6
+Animation Hurt 0 3 6 0.1 -1 -1
+Animation Death 0 3 2 0.2 -1 -1
