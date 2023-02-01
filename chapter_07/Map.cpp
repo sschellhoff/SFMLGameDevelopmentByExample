@@ -147,7 +147,7 @@ void Map::Update(float l_dT){
 		PurgeMap();
 		m_loadNextMap = false;
 		if(m_nextMap != ""){
-			LoadMap("media/maps/"+m_nextMap);
+			LoadMap("media/Maps/"+m_nextMap);
 		} else {
 			m_currentState->GetStateManager()->SwitchTo(StateType::GameOver);
 		}
