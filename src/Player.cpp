@@ -13,12 +13,6 @@ Player::Player(EntityManager* l_entityMgr)
 	events->AddCallback<Player>(StateType::Game, "Player_MoveRight", &Player::React, this);
 	events->AddCallback<Player>(StateType::Game, "Player_Jump", &Player::React, this);
 	events->AddCallback<Player>(StateType::Game, "Player_Attack", &Player::React, this);
-
-	m_bufferDie.loadFromFile("Resources/SoundEffects/attack-cannibal-beast-95140.wav");
-	m_soundDie.setBuffer(m_bufferDie);
-
-	m_bufferAttack.loadFromFile("Resources/SoundEffects/transition-explosion-121425.wav");
-	m_soundAttack.setBuffer(m_bufferAttack);
 }
 
 Player::~Player(){

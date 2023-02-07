@@ -90,23 +90,26 @@ void Character::Load(const std::string& l_path){
 			keystream >> m_jumpVelocity;
 		} else if(type == "MaxVelocity"){
 			keystream >> m_maxVelocity.x >> m_maxVelocity.y;
+		} else if(type == "DeathSound"){
+			std::string deathSound;
+			keystream >> deathSound;
+			m_bufferDie.loadFromFile(deathSound);
+			m_soundDie.setBuffer(m_bufferDie);
+		} else if(type == "AttackSound"){
+			std::string attackSound;
+			keystream >> attackSound;
+			m_bufferAttack.loadFromFile(attackSound);
+			m_soundAttack.setBuffer(m_bufferAttack);
+		} else if(type == "HurtSound"){
+			std::string hurtSound;
+			keystream >> hurtSound;
+			m_bufferHurt.loadFromFile(hurtSound);
+			m_soundHurt.setBuffer(m_bufferHurt);
 		} else {
 			std::cout << "! Unknown type in character file: " << type << std::endl;
 		}
 	}
 	file.close();
-
-	if(m_name=="Skeleton"){
-		m_bufferDie.loadFromFile("Resources/SoundEffects/bone-crack-121580.wav");
-		m_soundDie.setBuffer(m_bufferDie);
-
-		m_bufferAttack.loadFromFile("Resources/SoundEffects/knife-slice-41231.wav");
-		m_soundAttack.setBuffer(m_bufferAttack);
-
-		m_bufferHurt.loadFromFile("Resources/SoundEffects/shield-guard.wav");
-		m_soundHurt.setBuffer(m_bufferHurt);
-	}
-
 
 }
 
