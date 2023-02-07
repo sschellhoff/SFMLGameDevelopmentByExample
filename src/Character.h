@@ -25,6 +25,8 @@ public:
 
 	int GetHitpoints();
 
+	virtual void SetState(const EntityState& l_state);
+
 
 protected:
 	void UpdateAttackAABB();

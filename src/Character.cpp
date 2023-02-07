@@ -28,8 +28,21 @@ void Character::Attack(){
 		GetState() == EntityState::Hurt || GetState() == EntityState::Attacking)
 	{ return; }
 	SetState(EntityState::Attacking);
-	m_soundAttack.play();
+	
 }
+
+void Character::SetState(const EntityState& l_state){
+	EntityBase::SetState(l_state);
+
+	if(l_state == EntityState::Attacking){
+		m_soundAttack.play();
+	} else if(l_state == EntityState::Dying){
+		m_soundDie.play();
+	} else if(l_state == EntityState::Hurt){
+		m_soundHurt.play();
+	}
+}
+
 
 void Character::GetHurt(const int& l_damage){
 	if (GetState() == EntityState::Dying || GetState() == EntityState::Hurt){ return; }
@@ -39,8 +52,6 @@ void Character::GetHurt(const int& l_damage){
 	if (m_currentHitpoints){ SetState(EntityState::Hurt); }
 	else { 
 		SetState(EntityState::Dying);
-		std::cout<<"died"<<std::endl;
-		m_soundDie.play();
 	}
 }
 
@@ -58,6 +69,7 @@ void Character::Load(const std::string& l_path){
 		keystream >> type;
 		if(type == "Name"){
 			keystream >> m_name;
+			std::cout<<"parsing name: "<<m_name<<std::endl;
 		} else if(type == "Spritesheet"){
 			std::string path;
 			keystream >> path;
@@ -83,6 +95,19 @@ void Character::Load(const std::string& l_path){
 		}
 	}
 	file.close();
+
+	if(m_name=="Skeleton"){
+		m_bufferDie.loadFromFile("Resources/SoundEffects/bone-crack-121580.wav");
+		m_soundDie.setBuffer(m_bufferDie);
+
+		m_bufferAttack.loadFromFile("Resources/SoundEffects/knife-slice-41231.wav");
+		m_soundAttack.setBuffer(m_bufferAttack);
+
+		m_bufferHurt.loadFromFile("Resources/SoundEffects/shield-guard.wav");
+		m_soundHurt.setBuffer(m_bufferHurt);
+	}
+
+
 }
 
 void Character::UpdateAttackAABB(){

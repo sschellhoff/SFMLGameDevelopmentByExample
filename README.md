@@ -54,6 +54,7 @@ Before checking out the source code I strongly recommend to read the book first 
     - Bone Crack - Universfield
     - attack cannibal beast - jvmyka@gmail.com
     - transition explosion - Cristian Changing
+    - shield guard - nekoninja
 4. Backgrounds:
     - https://ansimuz.itch.io/mountain-dusk-parallax-background - Author: ansimuz
 5. Fonts:

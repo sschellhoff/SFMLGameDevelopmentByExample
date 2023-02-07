@@ -38,7 +38,7 @@ public:
 	void SetPosition(float l_x, float l_y);
 	void SetPosition(const sf::Vector2f& l_pos);
 	void SetSize(float l_x, float l_y);
-	void SetState(const EntityState& l_state);
+	virtual void SetState(const EntityState& l_state);
 
 	void Move(float l_x, float l_y);
 	void AddVelocity(float l_x, float l_y);
