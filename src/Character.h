@@ -25,9 +25,6 @@ public:
 
 	int GetHitpoints();
 
-	virtual void SetState(const EntityState& l_state);
-
-
 protected:
 	void UpdateAttackAABB();
 	void Animate();
@@ -39,13 +36,5 @@ protected:
 
 	sf::FloatRect m_attackAABB;
 	sf::Vector2f m_attackAABBoffset;
-
-	sf::SoundBuffer m_bufferAttack;
-	sf::SoundBuffer m_bufferHurt;
-	sf::SoundBuffer m_bufferDie;
-
-	sf::Sound m_soundAttack;
-	sf::Sound m_soundHurt;
-	sf::Sound m_soundDie;
 	
 };

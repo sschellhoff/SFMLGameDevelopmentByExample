@@ -38,6 +38,14 @@ void EntityBase::SetAcceleration(float l_x, float l_y){
 void EntityBase::SetState(const EntityState& l_state){
 	if (m_state == EntityState::Dying){ return; }
 	m_state = l_state;
+
+	if(l_state == EntityState::Attacking){
+		m_soundAttack.play();
+	} else if(l_state == EntityState::Dying){
+		m_soundDie.play();
+	} else if(l_state == EntityState::Hurt){
+		m_soundHurt.play();
+	}
 }
 
 const sf::Vector2f& EntityBase::GetSize()const{ return m_size; }

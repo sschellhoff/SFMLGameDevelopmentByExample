@@ -56,6 +56,12 @@ void State_MainMenu::OnCreate(){
 		m_labels[i].setPosition(buttonPosition);
 	}
 
+
+	music.openFromFile("Resources/MusicTracks/the-abyss.wav");
+	music.setVolume(50.0f);
+	music.setLoop(true);
+
+
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
 	evMgr->AddCallback(StateType::MainMenu, "Mouse_Left", &State_MainMenu::MouseClick, this);
@@ -68,17 +74,7 @@ void State_MainMenu::OnDestroy(){
 }
 
 void State_MainMenu::Activate(){
-	// if (m_stateMgr->HasState(StateType::Game)
-	// 	&& m_labels[0].getString() != "RESUME")
-	// {
-	// 	m_labels[0].setString(sf::String("RESUME"));
-	// } else {
-	// 	m_labels[0].setString(sf::String("PLAY"));
-	// }
-
-	// sf::FloatRect rect = m_labels[0].getLocalBounds();
-	// 	m_labels[0].setOrigin(rect.left + rect.width / 2.0f,
-	// 	rect.top + rect.height / 2.0f);
+	music.play();
 }
 
 void State_MainMenu::MouseClick(EventDetails* l_details){
@@ -116,4 +112,6 @@ void State_MainMenu::Draw(){
 }
 
 void State_MainMenu::Update(const sf::Time& l_time){}
-void State_MainMenu::Deactivate(){}
+void State_MainMenu::Deactivate(){
+	music.stop();
+}

@@ -3,6 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Audio.hpp>
 
 enum class EntityType{ Base, Enemy, Player };
 
@@ -38,7 +39,7 @@ public:
 	void SetPosition(float l_x, float l_y);
 	void SetPosition(const sf::Vector2f& l_pos);
 	void SetSize(float l_x, float l_y);
-	virtual void SetState(const EntityState& l_state);
+	void SetState(const EntityState& l_state);
 
 	void Move(float l_x, float l_y);
 	void AddVelocity(float l_x, float l_y);
@@ -78,4 +79,14 @@ protected:
 
 	Collisions m_collisions;
 	EntityManager* m_entityManager;
+
+	// Basic sounds
+	sf::SoundBuffer m_bufferAttack;
+	sf::SoundBuffer m_bufferHurt;
+	sf::SoundBuffer m_bufferDie;
+
+	sf::Sound m_soundAttack;
+	sf::Sound m_soundHurt;
+	sf::Sound m_soundDie;
+
 };

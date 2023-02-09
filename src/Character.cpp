@@ -31,19 +31,6 @@ void Character::Attack(){
 	
 }
 
-void Character::SetState(const EntityState& l_state){
-	EntityBase::SetState(l_state);
-
-	if(l_state == EntityState::Attacking){
-		m_soundAttack.play();
-	} else if(l_state == EntityState::Dying){
-		m_soundDie.play();
-	} else if(l_state == EntityState::Hurt){
-		m_soundHurt.play();
-	}
-}
-
-
 void Character::GetHurt(const int& l_damage){
 	if (GetState() == EntityState::Dying || GetState() == EntityState::Hurt){ return; }
 	m_currentHitpoints = (m_currentHitpoints - l_damage > 0 ? m_currentHitpoints - l_damage : 0);

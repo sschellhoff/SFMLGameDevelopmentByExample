@@ -87,9 +87,7 @@ void State_Paused::MouseClick(EventDetails* l_details){
 			} else if(i == 1){
 				
 			} else if(i == 2){
-				//m_stateMgr->GetContext()->m_wind->Close();
-				//std::cout<<"option 3"<<std::endl;
-				m_stateMgr->SwitchTo(StateType::MainMenu);
+				m_stateMgr->SwitchTo(StateType::YesNoMenu);
 			}
 		}
 	}
@@ -110,6 +108,9 @@ void State_Paused::Unpause(EventDetails* l_details){
 	m_stateMgr->SwitchTo(StateType::Game);
 }
 
-void State_Paused::Activate(){}
+void State_Paused::Activate(){
+	if(m_stateMgr->HasState(StateType::YesNoMenu))
+		m_stateMgr->Remove(StateType::YesNoMenu); // Destroy 'Paused' state before YesNo selection
+}
 void State_Paused::Deactivate(){}
 void State_Paused::Update(const sf::Time& l_time){}

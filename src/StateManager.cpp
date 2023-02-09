@@ -10,6 +10,7 @@ StateManager::StateManager(SharedContext* l_shared)
 	RegisterState<State_GameOver>(StateType::GameOver);
 	RegisterState<State_LevelCompleted>(StateType::LevelCompleted);
 	RegisterState<State_ChooseMap>(StateType::ChooseMap);
+	RegisterState<State_YesNoMenu>(StateType::YesNoMenu);
 }
 
 StateManager::~StateManager(){
