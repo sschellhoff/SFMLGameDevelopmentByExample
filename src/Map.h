@@ -110,4 +110,5 @@ private:
 	SharedContext* m_context;
 
 	std::string m_musicName;
+	int m_totalEnemies;
 };

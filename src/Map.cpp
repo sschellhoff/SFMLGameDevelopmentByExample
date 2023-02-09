@@ -31,6 +31,12 @@ const sf::Vector2f& Map::GetPlayerStart()const{ return m_playerStart; }
 std::string Map::GetMusicName(){ return m_musicName; }
 
 void Map::LoadMap(const std::string& l_path){
+
+	// Enemies counters
+	m_totalEnemies = 0;
+	m_context->m_totalEnemies = 0;
+	m_context->m_deadEnemies = 0;
+
 	std::ifstream mapFile;
 	mapFile.open(Utils::GetResourceDirectory() + l_path);
 	if (!mapFile.is_open()){ std::cout << "! Failed loading map file: " << l_path << std::endl; return; }
@@ -148,6 +154,8 @@ void Map::LoadMap(const std::string& l_path){
 			float enemyX = 0; float enemyY = 0;
 			keystream >> enemyX >> enemyY;
 			entityMgr->Find(enemyId)->SetPosition(enemyX, enemyY);
+			m_totalEnemies++;
+			m_context->m_totalEnemies++;
 		} else {
 			// Something else.
 			std::cout << "! Unknown type \"" << type << "\"." << std::endl;

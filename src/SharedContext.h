@@ -20,6 +20,10 @@ struct SharedContext{
 	EntityManager* m_entityManager;
 	Map* m_gameMap;
 	DebugOverlay m_debugOverlay;
+
+	// Game related variables
 	int m_mapNumber;
 	int m_characterCurrentHealth;
+	int m_totalEnemies;
+	int m_deadEnemies;
 };

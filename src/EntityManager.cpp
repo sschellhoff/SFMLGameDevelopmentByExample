@@ -85,6 +85,14 @@ void EntityManager::ProcessRemovals(){
 		auto itr = m_entities.find(id);
 		if(itr != m_entities.end()){
 			std::cout << "Discarding entity: " << itr->second->GetId() << std::endl;
+
+			// check if the discarded entity is an Enemy
+			if(itr->second->GetType() == EntityType::Enemy){
+				m_context->m_deadEnemies++;
+				std::cout<<"total enemies "<<m_context->m_totalEnemies<<std::endl;
+				std::cout<<"dead enemies "<<m_context->m_deadEnemies<<std::endl;
+			}
+
 			delete itr->second;
 			m_entities.erase(itr);
 		}
