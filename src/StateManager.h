@@ -11,6 +11,7 @@
 #include "State_YesNoMenu.h"
 #include "SharedContext.h"
 
+
 enum class StateType{ Intro = 1, MainMenu, Game, Paused, GameOver, Credits, LevelCompleted, ChooseMap, YesNoMenu };
 
 // State container.
@@ -53,4 +54,10 @@ private:
 	StateContainer m_states;
 	TypeContainer m_toRemove;
 	StateFactory m_stateFactory;
+
+	sf::Music m_musicMain;
+
+	sf::SoundBuffer m_bufferUIsound;
+	sf::Sound m_UIsound;
+
 };

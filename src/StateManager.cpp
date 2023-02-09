@@ -11,6 +11,14 @@ StateManager::StateManager(SharedContext* l_shared)
 	RegisterState<State_LevelCompleted>(StateType::LevelCompleted);
 	RegisterState<State_ChooseMap>(StateType::ChooseMap);
 	RegisterState<State_YesNoMenu>(StateType::YesNoMenu);
+
+	m_musicMain.openFromFile("Resources/MusicTracks/the-abyss.wav");
+	m_musicMain.setVolume(50.0f);
+	m_musicMain.setLoop(true);
+
+	m_bufferUIsound.loadFromFile("Resources/SoundEffects/interface.wav");
+	m_UIsound.setBuffer(m_bufferUIsound);
+	m_UIsound.setVolume(50.0f);
 }
 
 StateManager::~StateManager(){
@@ -84,6 +92,17 @@ void StateManager::ProcessRequests(){
 }
 
 void StateManager::SwitchTo(const StateType& l_type){
+
+	if(l_type!=StateType::Intro){
+		m_UIsound.play();
+	}
+
+	if(l_type==StateType::MainMenu && m_musicMain.getStatus() == sf::SoundSource::Status::Stopped){
+		m_musicMain.play();
+	} else if(l_type!=StateType::ChooseMap && l_type!=StateType::MainMenu){
+		m_musicMain.stop();
+	}
+
 	m_shared->m_eventManager->SetCurrentState(l_type);
 	for (auto itr = m_states.begin();
 		itr != m_states.end(); ++itr)

@@ -286,6 +286,7 @@ void Map::PurgeMap(){
 
 	m_context->m_textureManager->ReleaseResource("HeartFull");
 	m_context->m_textureManager->ReleaseResource("HeartEmpty");
+	m_context->m_textureManager->ReleaseResource("Hud");
 }
 
 void Map::PurgeTileSet(){

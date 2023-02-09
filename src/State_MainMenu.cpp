@@ -57,9 +57,9 @@ void State_MainMenu::OnCreate(){
 	}
 
 
-	music.openFromFile("Resources/MusicTracks/the-abyss.wav");
-	music.setVolume(50.0f);
-	music.setLoop(true);
+	// music.openFromFile("Resources/MusicTracks/the-abyss.wav");
+	// music.setVolume(50.0f);
+	// music.setLoop(true);
 
 
 	EventManager* evMgr = m_stateMgr->
@@ -74,7 +74,7 @@ void State_MainMenu::OnDestroy(){
 }
 
 void State_MainMenu::Activate(){
-	music.play();
+	//music.play();
 }
 
 void State_MainMenu::MouseClick(EventDetails* l_details){
@@ -112,6 +112,7 @@ void State_MainMenu::Draw(){
 }
 
 void State_MainMenu::Update(const sf::Time& l_time){}
+
 void State_MainMenu::Deactivate(){
-	music.stop();
+	//music.stop();
 }
