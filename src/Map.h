@@ -37,8 +37,6 @@ struct TileInfo{
 			Sheet::Tile_Size,Sheet::Tile_Size);
 		
 		m_sprite.setTextureRect(tileBoundaries);
-		std::cout<<"added tile with id "<<m_id<<std::endl;
-		std::cout << tileBoundaries.top << " " << tileBoundaries.left << std::endl;
 	}
 
 	~TileInfo(){
@@ -97,6 +95,7 @@ private:
 	sf::Sprite m_background;
 	//sf::Sprite m_health;
 	std::vector<sf::Sprite> hearts;
+	sf::Sprite hud;
 	int m_characterHp;
 	TileInfo m_defaultTile;
 	sf::Vector2u m_maxMapSize;

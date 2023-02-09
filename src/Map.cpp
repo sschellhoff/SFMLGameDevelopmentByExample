@@ -117,7 +117,7 @@ void Map::LoadMap(const std::string& l_path){
 			entityMgr->Find(playerId)->SetPosition(playerX,playerY);
 			m_playerStart = sf::Vector2f(playerX, playerY);
 
-			// Set up healthbar
+			// Set up healthbar.
 			m_characterHp = ((Character*) (entityMgr->Find(playerId)))->GetHitpoints();
 
 			m_context->m_characterCurrentHealth = m_characterHp;
@@ -133,7 +133,12 @@ void Map::LoadMap(const std::string& l_path){
 				}
 			}
 
-			std::cout<<"hitpoints " << m_characterHp << std::endl;
+			// Set up Hud.
+			if(m_context->m_textureManager->RequireResource("Hud")){
+				sf::Texture* hudTexture = m_context->m_textureManager->GetResource("Hud");
+				hud.setTexture(*hudTexture);				
+				hud.setScale(0.6f,0.5f);	
+			}
 
 		} else if(type == "ENEMY"){
 			std::string enemyName;
@@ -230,12 +235,12 @@ void Map::Draw(){
 		}
 	}
 
+	// Choose correct sprite for each of the Hearts in the array.
 	if(m_context->m_characterCurrentHealth < m_characterHp){
 		sf::Texture* healthTexture = m_context->m_textureManager->GetResource("HeartEmpty");
 		for(int i=1; i<=(m_characterHp - m_context->m_characterCurrentHealth);i++){
 			hearts[hearts.size()-i].setTexture(*healthTexture);
-		}
-		
+		}	
 	}
 
 	sf::Texture* healthTexture = m_context->m_textureManager->GetResource("HeartFull");
@@ -243,10 +248,13 @@ void Map::Draw(){
 		hearts[i].setTexture(*healthTexture);
 	}
 
+	// Draw HUD
+	hud.setPosition(viewSpace.left, viewSpace.top);
+	l_wind->draw(hud);
 
 	// Draw Healthbar.
 	for(int i=0; i<hearts.size(); i++){
-		hearts[i].setPosition(viewSpace.left + 32*i , viewSpace.top);
+		hearts[i].setPosition(viewSpace.left + 27*i + 9 , viewSpace.top+6);
 		
 		l_wind->draw(hearts[i]);
 	}
