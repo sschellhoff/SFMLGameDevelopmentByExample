@@ -10,8 +10,8 @@ void State_Game::OnCreate(){
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
 
-	evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);
-	evMgr->AddCallback(StateType::Game, "Key_P", &State_Game::Pause, this);
+	//evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);
+	evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::Pause, this);
 	evMgr->AddCallback(StateType::Game, "Key_O", &State_Game::ToggleOverlay, this);
 
 	sf::Vector2u size = m_stateMgr->GetContext()->m_wind->GetWindowSize();
@@ -44,7 +44,7 @@ void State_Game::OnDestroy(){
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::Game, "Key_Escape");
-	evMgr->RemoveCallback(StateType::Game, "Key_P");
+	//evMgr->RemoveCallback(StateType::Game, "Key_P");
 	evMgr->RemoveCallback(StateType::Game, "Key_O");
 	
 	delete m_gameMap;
@@ -90,9 +90,9 @@ void State_Game::Draw(){
 	m_stateMgr->GetContext()->m_entityManager->Draw();
 }
 
-void State_Game::MainMenu(EventDetails* l_details){
-	m_stateMgr->SwitchTo(StateType::MainMenu);
-}
+// void State_Game::MainMenu(EventDetails* l_details){
+// 	m_stateMgr->SwitchTo(StateType::MainMenu);
+// }
 
 void State_Game::Pause(EventDetails* l_details){
 	m_stateMgr->SwitchTo(StateType::Paused);

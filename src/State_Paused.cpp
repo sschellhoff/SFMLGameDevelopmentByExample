@@ -60,14 +60,15 @@ void State_Paused::OnCreate(){
 
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
-	evMgr->AddCallback(StateType::Paused,"Key_P", &State_Paused::Unpause,this);
+	evMgr->AddCallback(StateType::Paused,"Key_Escape", &State_Paused::Unpause,this);
 	evMgr->AddCallback(StateType::Paused, "Mouse_Left", &State_Paused::MouseClick,this);
 }
 
 void State_Paused::OnDestroy(){
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
-	evMgr->RemoveCallback(StateType::Paused, "Key_P");
+	evMgr->RemoveCallback(StateType::Paused, "Key_Escape");
+	evMgr->RemoveCallback(StateType::Paused, "Mouse_Left");
 }
 
 void State_Paused::MouseClick(EventDetails* l_details){
