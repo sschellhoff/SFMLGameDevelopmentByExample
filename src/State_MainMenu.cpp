@@ -11,6 +11,22 @@ void State_MainMenu::OnCreate(){
 	sf::Vector2u windowSize = m_stateMgr->GetContext()
 		->m_wind->GetRenderWindow()->getSize();
 
+	// Set up background.
+	m_rect.setSize(sf::Vector2f(windowSize));
+	m_rect.setPosition(0,0);
+	m_rect.setFillColor(sf::Color(20,9,23,255));
+
+	// Set up Logo sprite.
+	TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
+	textureMgr->RequireResource("Logo");
+	m_logo.setTexture(*textureMgr->GetResource("Logo"));
+	m_logo.setOrigin(textureMgr->GetResource("Logo")->getSize().x / 2.0f,
+					textureMgr->GetResource("Logo")->getSize().y / 2.0f);
+
+	m_logo.setScale(0.7f, 0.7f);
+	m_logo.setPosition(windowSize.x / 2.0f, windowSize.y / 3.0f);
+
+	// Set up title.
 	m_font.loadFromFile(Utils::GetResourceDirectory() + "media/Fonts/FORCED_SQUARE.ttf");
 	m_text.setFont(m_font);
 	m_text.setString(sf::String("MAIN MENU:"));
@@ -20,12 +36,11 @@ void State_MainMenu::OnCreate(){
 	m_text.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
 
-	m_text.setPosition(windowSize.x / 2.0f, windowSize.y / 10.0f);
+	m_text.setPosition(windowSize.x / 2.0f, windowSize.y / 1.64f);
 
-
-
+	// Set up buttons.
 	m_buttonSize = sf::Vector2f(300.0f,32.0f);
-	m_buttonPos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 2.0f);
+	m_buttonPos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 1.5f);
 	m_buttonPadding = 4; // 4px.
 
 	std::string str[3];
@@ -38,7 +53,7 @@ void State_MainMenu::OnCreate(){
 			m_buttonPos.x,m_buttonPos.y + 
 			(i * (m_buttonSize.y + m_buttonPadding)));
 		m_rects[i].setSize(m_buttonSize);
-		m_rects[i].setFillColor(sf::Color::Red);
+		m_rects[i].setFillColor(sf::Color(58,28,63,255));
 
 		m_rects[i].setOrigin(
 			m_buttonSize.x / 2.0f, m_buttonSize.y / 2.0f);
@@ -46,7 +61,7 @@ void State_MainMenu::OnCreate(){
 
 		m_labels[i].setFont(m_font);
 		m_labels[i].setString(sf::String(str[i]));
-		m_labels[i].setCharacterSize(12);
+		m_labels[i].setCharacterSize(20);
 
 		sf::FloatRect rect = m_labels[i].getLocalBounds();
 		m_labels[i].setOrigin(
@@ -55,12 +70,6 @@ void State_MainMenu::OnCreate(){
 
 		m_labels[i].setPosition(buttonPosition);
 	}
-
-
-	// music.openFromFile("Resources/MusicTracks/the-abyss.wav");
-	// music.setVolume(50.0f);
-	// music.setLoop(true);
-
 
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
@@ -71,10 +80,8 @@ void State_MainMenu::OnDestroy(){
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::MainMenu, "Mouse_Left");
-}
 
-void State_MainMenu::Activate(){
-	//music.play();
+	m_stateMgr->GetContext()->m_textureManager->ReleaseResource("Logo");
 }
 
 void State_MainMenu::MouseClick(EventDetails* l_details){
@@ -90,7 +97,6 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 			mousePos.y<=m_rects[i].getPosition().y + halfY)
 		{
 			if(i == 0){
-				//m_stateMgr->SwitchTo(StateType::Game);
 				m_stateMgr->SwitchTo(StateType::ChooseMap);
 			} else if(i == 1){
 				// Credits state.
@@ -104,15 +110,16 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 void State_MainMenu::Draw(){
 	sf::RenderWindow* window = m_stateMgr->
 		GetContext()->m_wind->GetRenderWindow();
+
+	window->draw(m_rect);
 	window->draw(m_text);
+	window->draw(m_logo);
 	for(int i = 0; i < 3; ++i){
 		window->draw(m_rects[i]);
 		window->draw(m_labels[i]);
 	}
 }
 
+void State_MainMenu::Activate(){}
 void State_MainMenu::Update(const sf::Time& l_time){}
-
-void State_MainMenu::Deactivate(){
-	//music.stop();
-}
+void State_MainMenu::Deactivate(){}

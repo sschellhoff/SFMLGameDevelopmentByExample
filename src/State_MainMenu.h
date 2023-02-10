@@ -27,4 +27,7 @@ private:
 
 	sf::RectangleShape m_rects[3];
 	sf::Text m_labels[3];
+
+	sf::Sprite m_logo;
+	sf::RectangleShape m_rect;
 };

@@ -45,6 +45,7 @@ Before checking out the source code I strongly recommend to read the book first 
     - Skeleton sprites: https://luizmelo.itch.io/monsters-creatures-fantasy - Author: LuizMelo
     - Tileset: https://poloviiinkin.itch.io/textures - Author: Poloviiinkin
     - Heart sprites: https://nicolemariet.itch.io/pixel-heart-animation-32x32-16x16-freebie - Author: NicoleMarieT
+    - HUD Sprite: https://dandann1.itch.io/hud-buttons - - Author: DanDann1
 2. Music:
     - https://freepd.com/world.php
     - https://freepd.com/horror.php
@@ -60,6 +61,7 @@ Before checking out the source code I strongly recommend to read the book first 
     - https://ansimuz.itch.io/mountain-dusk-parallax-background - Author: ansimuz
 5. Fonts:
     - All fonts in the game's Resources are from https://www.dafont.com/
+6. Logo made with https://placeit.net/
 
 
 Huge shout out to all those amazing creators!

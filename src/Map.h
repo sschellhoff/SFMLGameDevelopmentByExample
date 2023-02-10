@@ -93,7 +93,6 @@ private:
 	TileSet m_tileSet;
 	TileMap m_tileMap;
 	sf::Sprite m_background;
-	//sf::Sprite m_health;
 	std::vector<sf::Sprite> hearts;
 	sf::Sprite hud;
 	int m_characterHp;

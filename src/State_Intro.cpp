@@ -11,22 +11,22 @@ void State_Intro::OnCreate(){
 		->m_wind->GetRenderWindow()->getSize();
 
 	TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
-	textureMgr->RequireResource("Intro");
-	m_introSprite.setTexture(*textureMgr->GetResource("Intro"));
-	m_introSprite.setOrigin(textureMgr->GetResource("Intro")->getSize().x / 2.0f,
-							textureMgr->GetResource("Intro")->getSize().y / 2.0f);
+	textureMgr->RequireResource("Splash_Screen");
+	m_introSprite.setTexture(*textureMgr->GetResource("Splash_Screen"));
+	m_introSprite.setOrigin(textureMgr->GetResource("Splash_Screen")->getSize().x / 2.0f,
+							textureMgr->GetResource("Splash_Screen")->getSize().y / 2.0f);
 
+	m_introSprite.setScale(0.6f, 0.6f);
 	m_introSprite.setPosition(windowSize.x / 2.0f, windowSize.y / 2.0f);
 
-	m_font.loadFromFile(Utils::GetResourceDirectory() + "media/Fonts/arial.ttf");
+	m_font.loadFromFile(Utils::GetResourceDirectory() + "media/Fonts/FORCED_SQUARE.ttf");
 	m_text.setFont(m_font);
 	m_text.setString(sf::String("Press SPACE to continue"));
-	m_text.setCharacterSize(15);
+	m_text.setCharacterSize(25);
 	sf::FloatRect textRect = m_text.getLocalBounds();
 	m_text.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
-	m_text.setPosition(m_introSprite.getPosition().x, 
-		m_introSprite.getPosition().y + textureMgr->GetResource("Intro")->getSize().y / 1.5f);
+	m_text.setPosition(windowSize.x / 2.0f, windowSize.y / 1.5f);
 
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
@@ -35,7 +35,7 @@ void State_Intro::OnCreate(){
 
 void State_Intro::OnDestroy(){
 	TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
-	textureMgr->ReleaseResource("Intro");
+	textureMgr->ReleaseResource("Splash_Screen");
 
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
