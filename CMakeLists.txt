@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
 # Set project name and version
-project(Pong VERSION 0.1)
+project(ScrollOfTheUndead VERSION 0.1)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 11)
@@ -37,7 +37,7 @@ configure_file(include/config.h.in config.h)
 find_package(SFML 2.5 COMPONENTS system window graphics audio REQUIRED)
 
 # Compile executable
-add_executable(Pong 
+add_executable(ScrollOfTheUndead 
     src/Anim_Base.cpp 
     src/Anim_Directional.cpp 
     src/Character.cpp 
@@ -62,24 +62,24 @@ add_executable(Pong
     src/Window.cpp )
 
 # Set include directory search paths
-target_include_directories(Pong 
+target_include_directories(ScrollOfTheUndead 
   PRIVATE
     "${PROJECT_BINARY_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
   )
 
 # Set executable RPATH
-set_target_properties(Pong
+set_target_properties(ScrollOfTheUndead
   PROPERTIES
       INSTALL_RPATH
         "${CMAKE_INSTALL_PREFIX}/lib"
   )
 
 # Link executable to required SFML modules
-target_link_libraries(Pong sfml-graphics sfml-audio)
+target_link_libraries(ScrollOfTheUndead sfml-graphics sfml-audio)
 
 # Set executable install location
-install(TARGETS Pong DESTINATION bin)
+install(TARGETS ScrollOfTheUndead DESTINATION bin)
 
 # Set install location for resources
 install(DIRECTORY Resources

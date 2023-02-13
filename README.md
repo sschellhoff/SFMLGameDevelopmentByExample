@@ -28,6 +28,7 @@ This is game is an improvement of the book's **Chapter 7**. More specifically th
 - Added music and sounds (not with the book's sound manager but with a much less sophisticated implementation)
 - Added a new tileset (16 * 16)
 - Added a Python script that generates .map files from .png images (This makes it easier to create a map)
+- Added **CMakeLists.txt** a based on this amazing guide: https://dane-bulat.medium.com/cmake-building-sfml-and-game-projects-on-linux-3947b3ba6e8
 - Minor other changes
 
 This project started because I wanted to create a video game from scratch. Thankfully the book does a good job providing and explaining a template that can be a good start as my very first game. I strongly recommend you check out this book if you want to see what game development really is.
