@@ -80,17 +80,17 @@ void Character::Load(const std::string& l_path){
 		} else if(type == "DeathSound"){
 			std::string deathSound;
 			keystream >> deathSound;
-			m_bufferDie.loadFromFile(deathSound);
+			m_bufferDie.loadFromFile(Utils::GetResourceDirectory() + deathSound);
 			m_soundDie.setBuffer(m_bufferDie);
 		} else if(type == "AttackSound"){
 			std::string attackSound;
 			keystream >> attackSound;
-			m_bufferAttack.loadFromFile(attackSound);
+			m_bufferAttack.loadFromFile(Utils::GetResourceDirectory() + attackSound);
 			m_soundAttack.setBuffer(m_bufferAttack);
 		} else if(type == "HurtSound"){
 			std::string hurtSound;
 			keystream >> hurtSound;
-			m_bufferHurt.loadFromFile(hurtSound);
+			m_bufferHurt.loadFromFile(Utils::GetResourceDirectory() + hurtSound);
 			m_soundHurt.setBuffer(m_bufferHurt);
 		} else {
 			std::cout << "! Unknown type in character file: " << type << std::endl;

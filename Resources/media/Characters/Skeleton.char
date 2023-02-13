@@ -1,0 +1,11 @@
+Name Skeleton
+Spritesheet Skeleton.sheet
+Hitpoints 3
+BoundingBox 20 45
+DamageBox 0 0 30 30
+Speed 512 64
+JumpVelocity 128
+MaxVelocity 128 1024
+DeathSound SoundEffects/bone-crack-121580.wav
+AttackSound SoundEffects/knife-slice-41231.wav
+HurtSound SoundEffects/shield-guard.wav

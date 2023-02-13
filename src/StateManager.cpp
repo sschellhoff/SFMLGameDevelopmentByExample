@@ -12,11 +12,11 @@ StateManager::StateManager(SharedContext* l_shared)
 	RegisterState<State_ChooseMap>(StateType::ChooseMap);
 	RegisterState<State_YesNoMenu>(StateType::YesNoMenu);
 
-	m_musicMain.openFromFile("Resources/MusicTracks/the-abyss.wav");
+	m_musicMain.openFromFile( Utils::GetResourceDirectory() + "MusicTracks/the-abyss.wav");
 	m_musicMain.setVolume(50.0f);
 	m_musicMain.setLoop(true);
 
-	m_bufferUIsound.loadFromFile("Resources/SoundEffects/interface.wav");
+	m_bufferUIsound.loadFromFile(Utils::GetResourceDirectory()  + "SoundEffects/interface.wav");
 	m_UIsound.setBuffer(m_bufferUIsound);
 	m_UIsound.setVolume(50.0f);
 }

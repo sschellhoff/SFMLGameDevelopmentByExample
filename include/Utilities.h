@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include "config.h"
 
 namespace Utils{
 	#ifdef RUNNING_WINDOWS
@@ -32,6 +33,6 @@ namespace Utils{
 	#endif
 
 	inline std::string GetResourceDirectory(){
-		return GetWorkingDirectory() + std::string("Resources/");
+		return RESOURCE_PATH;
 	}
 }

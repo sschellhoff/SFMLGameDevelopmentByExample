@@ -6,5 +6,5 @@ DamageBox -5 -20 70 70
 Speed 1024 128
 JumpVelocity 250
 MaxVelocity 200 1024
-DeathSound Resources/SoundEffects/attack-cannibal-beast-95140.wav
-AttackSound Resources/SoundEffects/transition-explosion-121425.wav
+DeathSound SoundEffects/attack-cannibal-beast-95140.wav
+AttackSound SoundEffects/transition-explosion-121425.wav

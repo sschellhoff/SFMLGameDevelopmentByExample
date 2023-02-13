@@ -33,7 +33,7 @@ void State_Game::OnCreate(){
 		m_gameMap->LoadMap("media/Maps/map2.map");
 
 	
-	music.openFromFile("Resources/MusicTracks/" + m_gameMap->GetMusicName());
+	music.openFromFile(Utils::GetResourceDirectory() + "MusicTracks/" + m_gameMap->GetMusicName());
 	music.setVolume(50.0f);
 	music.setLoop(true);
 	
