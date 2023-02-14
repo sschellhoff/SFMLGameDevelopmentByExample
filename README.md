@@ -1,21 +1,35 @@
 # SFML Simple 2D Game
 
+![GitHub](https://img.shields.io/github/license/mataktelis11/Simple-SFML-2D-Game)
+![GitHub top language](https://img.shields.io/github/languages/top/mataktelis11/Simple-SFML-2D-Game)
+
+This is a game based on the source code provided by the book **SFML Game Development By Example (ISBN 9781785287343)** (https://www.packtpub.com/product/sfml-game-development-by-example/9781785287343).
+
 <img src="/docs/screenshots/1.png" alt="Alt text" title="In-Development Screenshot">
 
 
 ## Intro
-This is game based on the source code provided by the book **SFML Game Development By Example (ISBN 9781785287343)** (https://www.packtpub.com/product/sfml-game-development-by-example/9781785287343).
-
 This repository is a fork from **sschellhoff** (https://github.com/sschellhoff/SFMLGameDevelopmentByExample) who provided the original book's source code in a runnable version.
 
 NOTE: The project is still under development!!
 
-## Instructions
+## Build Instructions
+
 ### Linux
+
+#### Prerequisites
+
+Install SFML from your package manager. Also make sure you have cmake.
+
+#### Build
+
+Build from source
 ```
-git clone https://github.com/mataktelis11/SFMLGameDevelopmentByExample.git
-cd SFMLGameDevelopmentByExample/src/
-./build.sh 
+$ git clone https://github.com/mataktelis11/Simple-SFML-2D-Game.git
+$ cd Simple-SFML-2D-Game
+$ mkdir build && cd build
+$ cmake ..
+$ cmake --build .
 ```
 This will generate an executable file called **main** in the current dir.
 ### Windows

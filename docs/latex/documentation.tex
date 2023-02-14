@@ -22,7 +22,8 @@
 \usepackage{tikz,lipsum,lmodern}
 \usepackage[most]{tcolorbox}
 
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[LGR, T1]{fontenc}
 \usepackage[greek,english]{babel}
 \usepackage{alphabeta}
 \usepackage{amsmath}
@@ -43,9 +44,6 @@
 
 \usepackage{tabto}
 \usepackage{minted}
-
-
-\hyphenpenalty=10000
 
 
 \usepackage{geometry}
@@ -158,7 +156,7 @@
 	%\selectlanguage{english}
 	
 	\newpage
-	
+
 	\section{Εισαγωγή}
 
 	Το παρόν αρχείο αποτελεί την τεκμηρίωση για την εργασία του μαθήματος \textbf{Τεχνολογίες Ανάπτυξης Ηλεκτρονικών Παιχνιδιών}. Στόχος της εργασίας είναι η ανάπτυξη ενός βιντεοπαιχνιδιού. Η γλώσσα προγραμματισμού που επιλέχθηκε είναι η \textbf{C++}. Περισσότερες λεπτομέριες για την υλοποίηση θα παρουσιαστούν σε επόμενες ενότητες.
@@ -174,6 +172,8 @@
 	
 	
 	\section{Περιγραφή του προβλήματος}
+	
+	\subsection{Κριτήρια της εκφώνησης}
 	
 	Σκοπός της εργασίας είναι η δημιουργία ενός βιντεοπαιχνιδιού και δίνονται τα παρακάτω κριτήρια τα οποία θα πρέπει στην ιδανική περίπτωση να πληρούνται:
 	
@@ -203,13 +203,36 @@
 		
 	\end{itemize}
 
+	\subsection{Παρατηρήσεις}
+	Το παιχνίδι που θα παρουσιαστεί θα είναι δισδιάστατο (2D) και όχι τρισδιάστατο (3D) όπως αναφέρεται στα κριτήρια, χωρίς να σημαίνει αυτό ότι τα κριτήρια αλλάζουν σημαντικά. Πιο συγκεκριμένα το παιχνίδι θα είναι ένα απλό 2D platformer συγκρίσιμο σε μεγάλο βαθμό με το κλασσικό παιχνίδι \textbf{Super Mario Bros.} (Εικόνα \ref{fig:mario}).
+	
 
-
-
+ 	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{mario.png}
+	\caption{Super Mario Bros. (NES)}
+	\label{fig:mario}
+	\end{figure}
 	
 
 	
 	\section{Ανάλυση}
+	
+	
+	Στα πλαίσια της εργασίας είχαν οριστεί οι παρακάτω στόχοι:
+	
+	\begin{itemize}
+		\item \textbf{Χρήση δωρέαν και Open Source περιβάλλοντος για την ανάπτυξη του παιχνιδιού}\\
+		Η γλώσσα προγραμματισμού είναι η \textbf{C++} και βασικό ρόλο στην ανάπτυξη του παιχνιδιού έπαιξε η βιβλιοθήκη \textbf{SFML}. Τα αρχικά σημαίνουν \textbf{Simple and Fast Multimedia Library} και είναι μια cross-platform βιβλιοθήκη που παρέχει απλά API για τη δημιουργία παιχνιδιών και εφαρμογών. Η SFML μπορεί να χρησιμοποιηθεί τόσο για την ανάπτυξη μεγάλης κλίμακας εμπορικών παιχνιδιών, όσο και για μικρότερες ομάδες και χομπίστες που είναι αρχάριοι με την C++.
+		
+		\item \textbf{Χρήση από δωρεάν assets}
+		
+		\item \textbf{Δημιουργεία εκτελέσιμου αρχείου για πολλές πλατφόρμες (τουλάχιστον GNU/Linux και Windows)}
+	\end{itemize}
+	
+	
+	
+	
 	
 	\section{Σχεδίαση}
 	
