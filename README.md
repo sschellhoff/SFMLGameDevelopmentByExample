@@ -31,7 +31,7 @@ $ mkdir build && cd build
 $ cmake ..
 $ cmake --build .
 ```
-This will generate an executable file called **main** in the current dir.
+This will generate an executable file called **Simple-SFML-2D-Game** in the current dir.
 ### Windows
 coming soon....
 
