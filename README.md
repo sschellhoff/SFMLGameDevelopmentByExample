@@ -32,8 +32,24 @@ $ cmake ..
 $ cmake --build .
 ```
 This will generate an executable file called **ScrollOfTheUndead** in the current dir.
+
 ### Windows
-coming soon....
+
+#### Prerequisites
+You need to have installed **Cmake**, **MinGW** compiler and **SFML**. All those need to be in you path. You can download **MinGW** and **SFML** from here: https://www.sfml-dev.org/download/sfml/2.5.1/. Also you can check out this helpful guide for building SFML projects in Windows: https://wfale.net/2023/01/02/sfml-c-and-windows-quick-guide-to-awesome-graphics/.
+
+#### Build
+
+1. Clone the repo or download it as a zip and extract it
+2. Create a folder called ```build``` and navigate into it using cmd or gitbash
+3. Compile by typing the following commands:
+
+```
+$ cmake -G "MinGW Makefiles" ..
+$ mingw32-make
+```
+
+An .exe file should now exists in the build folder.
 
 ## Details
 This is game is an improvement of the book's **Chapter 7**. More specifically the following additions have been made:
