@@ -28,6 +28,10 @@ void Window::Create(){
 	if(m_isFullscreen){ style = sf::Style::Fullscreen; }
 
 	m_window.create(sf::VideoMode(m_windowSize.x,m_windowSize.y,32),m_windowTitle,style);
+
+	// experimental
+
+	m_window.setVerticalSyncEnabled(true);
 }
 
 void Window::BeginDraw(){ m_window.clear(sf::Color::Black); }
