@@ -16,7 +16,7 @@ void State_GameOver::OnCreate(){
 	m_rect.setPosition(0,0);
 	m_rect.setFillColor(sf::Color(20,9,23,255));
 
-	// Set up Logo sprite.
+	// Set up Logo sprite. (will be another image)
 	TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
 	textureMgr->RequireResource("Logo");
 	m_logo.setTexture(*textureMgr->GetResource("Logo"));
