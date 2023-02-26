@@ -35,8 +35,8 @@ void Enemy::Update(float l_dT){
 		if (m_collidingOnX){ m_hasDestination = false; }
 		return;
 	}
-	int random = rand() % 1000 + 1;
-	if (random != 1000){ return; }
+	int random = rand() % 100 + 1;
+	if (random != 100){ return; }
 	int newX = rand() % 65 + 0;
 	if (rand() % 2){ newX = -newX; }
 	m_destination.x = m_position.x + newX;

@@ -10,7 +10,6 @@ void State_Game::OnCreate(){
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
 
-	//evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);
 	evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::Pause, this);
 	evMgr->AddCallback(StateType::Game, "Key_O", &State_Game::ToggleOverlay, this);
 
@@ -35,16 +34,13 @@ void State_Game::OnCreate(){
 	
 	music.openFromFile(Utils::GetResourceDirectory() + "MusicTracks/" + m_gameMap->GetMusicName());
 	music.setVolume(50.0f);
-	music.setLoop(true);
-	
-	
+	music.setLoop(true);	
 }
 
 void State_Game::OnDestroy(){
 	EventManager* evMgr = m_stateMgr->
 		GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::Game, "Key_Escape");
-	//evMgr->RemoveCallback(StateType::Game, "Key_P");
 	evMgr->RemoveCallback(StateType::Game, "Key_O");
 	
 	delete m_gameMap;
@@ -55,18 +51,9 @@ void State_Game::Update(const sf::Time& l_time){
 	SharedContext* context = m_stateMgr->GetContext();
 	EntityBase* player = context->m_entityManager->Find("Player");
 	if(!player){
-		std::cout << "Respawning player..." << std::endl;
-		context->m_entityManager->Add(EntityType::Player,"Player");
-		player = context->m_entityManager->Find("Player");
-
-		// set currenthp
-		context->m_characterCurrentHealth = ((Character*) player)->GetHitpoints();
-
-		std::cout<< "SC health:" <<context->m_characterCurrentHealth<<std::endl;
-
-		std::cout<<m_gameMap->GetPlayerStart().x << " " << m_gameMap->GetPlayerStart().y << std::endl;
-
-		player->SetPosition(m_gameMap->GetPlayerStart());
+		std::cout << "You died" << std::endl;
+		m_stateMgr->SwitchTo(StateType::GameOver);
+		return;
 	} else {
 		m_view.setCenter(player->GetPosition());
 		context->m_wind->GetRenderWindow()->setView(m_view);
@@ -89,10 +76,6 @@ void State_Game::Draw(){
 	m_gameMap->Draw();
 	m_stateMgr->GetContext()->m_entityManager->Draw();
 }
-
-// void State_Game::MainMenu(EventDetails* l_details){
-// 	m_stateMgr->SwitchTo(StateType::MainMenu);
-// }
 
 void State_Game::Pause(EventDetails* l_details){
 	m_stateMgr->SwitchTo(StateType::Paused);

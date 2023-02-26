@@ -99,6 +99,8 @@ void StateManager::SwitchTo(const StateType& l_type){
 
 	if(l_type==StateType::MainMenu && m_musicMain.getStatus() == sf::SoundSource::Status::Stopped){
 		m_musicMain.play();
+	} else if(l_type==StateType::ChooseMap && m_musicMain.getStatus() == sf::SoundSource::Status::Stopped){
+		m_musicMain.play();
 	} else if(l_type!=StateType::ChooseMap && l_type!=StateType::MainMenu){
 		m_musicMain.stop();
 	}

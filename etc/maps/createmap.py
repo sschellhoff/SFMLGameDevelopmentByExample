@@ -1,9 +1,10 @@
 from PIL import Image
 from numpy import asarray
+import os
 
 # file names
-image_name = "logo.png"
-map_name = "map1.map"
+image_name = "map3.png"
+map_name = "map2.map"
 
 # map parameters (no SPACEs)
 bg_name = "MountainDusk"
@@ -89,7 +90,8 @@ for i in range(width):
             f.write("\n")
             
 
-
-
 f.close()
-        
+
+command = 'mv ' + map_name + ' ../../Resources/media/Maps'
+
+os.system(command)
