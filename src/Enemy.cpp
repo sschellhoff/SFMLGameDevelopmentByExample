@@ -3,8 +3,6 @@
 Enemy::Enemy(EntityManager* l_entityMgr)
 	:Character(l_entityMgr), m_hasDestination(false){
 		m_type = EntityType::Enemy;
-
-		std::cout<<"Enemy is:"<<m_name<<std::endl;
 	}
 
 Enemy::~Enemy(){}

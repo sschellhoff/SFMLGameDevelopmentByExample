@@ -31,7 +31,7 @@ void Window::Create(){
 
 	// experimental
 
-	//m_window.setVerticalSyncEnabled(false);
+	m_window.setVerticalSyncEnabled(true);
 	//m_window.setFramerateLimit(100);
 }
 

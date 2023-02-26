@@ -10,7 +10,7 @@
 #include "BaseState.h"
 #include "Character.h"
 
-enum Sheet{ Tile_Size = 16, Sheet_Width = 336, Sheet_Height = 320 };
+enum Sheet{ Tile_Size = 32, Sheet_Width = 256, Sheet_Height = 256 };
 
 using TileID = unsigned int;
 
@@ -83,6 +83,9 @@ public:
 
 	void Update(float l_dT);
 	void Draw();
+
+	void removeTile(int x, int y);
+
 private:
 	// Method for converting 2D coordinates to 1D ints.
 	unsigned int ConvertCoords(unsigned int l_x, unsigned int l_y);

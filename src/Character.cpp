@@ -56,7 +56,6 @@ void Character::Load(const std::string& l_path){
 		keystream >> type;
 		if(type == "Name"){
 			keystream >> m_name;
-			std::cout<<"parsing name: "<<m_name<<std::endl;
 		} else if(type == "Spritesheet"){
 			std::string path;
 			keystream >> path;

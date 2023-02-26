@@ -48,25 +48,25 @@ for i in range(width):
 
         if pixel[0]==255 and pixel[1]==255 and pixel[2]==255:
             f.write("PLAYER ")
-            f.write(str(j*16))
+            f.write(str(j*32))
             f.write(" ")
-            f.write(str(i*16))
+            f.write(str(i*32))
             f.write("\n")
             continue
 
         if pixel[0]==255 and pixel[1]==255 and pixel[2]==1:
             f.write("ENEMY Rat ")
-            f.write(str(j*16))
+            f.write(str(j*32))
             f.write(" ")
-            f.write(str(i*16))
+            f.write(str(i*32))
             f.write("\n")
             continue
 
         if pixel[0]==255 and pixel[1]==255 and pixel[2]==2:
             f.write("ENEMY Skeleton ")
-            f.write(str(j*16))
+            f.write(str(j*32))
             f.write(" ")
-            f.write(str(i*16))
+            f.write(str(i*32))
             f.write("\n")
             continue
 

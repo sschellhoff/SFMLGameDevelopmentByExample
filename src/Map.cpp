@@ -165,6 +165,10 @@ void Map::LoadMap(const std::string& l_path){
 	std::cout << "--- Map Loaded! ---" << std::endl;
 }
 
+void Map::removeTile(int x, int y){
+	m_tileMap.erase(ConvertCoords(x,y));
+}
+
 void Map::LoadNext(){ m_loadNextMap = true; }
 
 void Map::LoadTiles(const std::string& l_path){

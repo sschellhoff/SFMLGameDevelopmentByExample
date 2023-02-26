@@ -40,7 +40,8 @@ void EntityBase::SetState(const EntityState& l_state){
 	m_state = l_state;
 
 	if(l_state == EntityState::Attacking){
-		m_soundAttack.play();
+		if(m_soundAttack.getStatus() != sf::SoundSource::Status::Playing )
+			m_soundAttack.play();
 	} else if(l_state == EntityState::Dying){
 		m_soundDie.play();
 	} else if(l_state == EntityState::Hurt){
@@ -172,6 +173,10 @@ void EntityBase::CheckCollisions(){
 			m_collisions.emplace_back(e);
 			if(tile->m_warp && m_type == EntityType::Player){
 				gameMap->LoadNext();
+			}
+			if(tile->m_properties->m_id==1){
+				std::cout<<"touched!"<<std::endl;
+				gameMap->removeTile(x,y);
 			}
 		}
 	}

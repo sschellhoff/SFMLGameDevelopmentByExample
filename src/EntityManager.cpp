@@ -25,7 +25,6 @@ int EntityManager::Add(const EntityType& l_type, const std::string& l_name)
 		if(itr != m_enemyTypes.end()){
 			Enemy* enemy = (Enemy*)entity;
 			enemy->Load(itr->second);
-			std::cout<<"loaded enemy with name "<<enemy->m_name<<std::endl;
 		}
 	}
 
