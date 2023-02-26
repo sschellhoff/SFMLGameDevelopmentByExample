@@ -31,7 +31,8 @@ void Window::Create(){
 
 	// experimental
 
-	m_window.setVerticalSyncEnabled(true);
+	//m_window.setVerticalSyncEnabled(false);
+	//m_window.setFramerateLimit(100);
 }
 
 void Window::BeginDraw(){ m_window.clear(sf::Color::Black); }

@@ -93,10 +93,12 @@ void StateManager::ProcessRequests(){
 
 void StateManager::SwitchTo(const StateType& l_type){
 
-	if(l_type!=StateType::Intro){
+	// Play a 'click' sound when the user does a transition
+	if(l_type!=StateType::Intro && l_type!=StateType::GameOver){
 		m_UIsound.play();
 	}
 
+	// Handle Main Menu music (needs to play without pause in MainMenu and ChooseMap states).
 	if(l_type==StateType::MainMenu && m_musicMain.getStatus() == sf::SoundSource::Status::Stopped){
 		m_musicMain.play();
 	} else if(l_type==StateType::ChooseMap && m_musicMain.getStatus() == sf::SoundSource::Status::Stopped){

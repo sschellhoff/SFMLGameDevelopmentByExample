@@ -8,6 +8,10 @@ State_GameOver::~State_GameOver(){}
 
 void State_GameOver::OnCreate(){
 
+	m_bufferFailSound.loadFromFile(Utils::GetResourceDirectory() + "SoundEffects/failfare.wav");
+	m_FailSound.setBuffer(m_bufferFailSound);
+	m_FailSound.setVolume(50.0f);
+
 	sf::Vector2u windowSize = m_stateMgr->GetContext()
 		->m_wind->GetRenderWindow()->getSize();
 
@@ -18,10 +22,10 @@ void State_GameOver::OnCreate(){
 
 	// Set up Logo sprite. (will be another image)
 	TextureManager* textureMgr = m_stateMgr->GetContext()->m_textureManager;
-	textureMgr->RequireResource("Logo");
-	m_logo.setTexture(*textureMgr->GetResource("Logo"));
-	m_logo.setOrigin(textureMgr->GetResource("Logo")->getSize().x / 2.0f,
-					textureMgr->GetResource("Logo")->getSize().y / 2.0f);
+	textureMgr->RequireResource("GameOver");
+	m_logo.setTexture(*textureMgr->GetResource("GameOver"));
+	m_logo.setOrigin(textureMgr->GetResource("GameOver")->getSize().x / 2.0f,
+					textureMgr->GetResource("GameOver")->getSize().y / 2.0f);
 
 	m_logo.setScale(0.7f, 0.7f);
 	m_logo.setPosition(windowSize.x / 2.0f, windowSize.y / 3.0f);
@@ -36,11 +40,11 @@ void State_GameOver::OnCreate(){
 	m_text.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
 
-	m_text.setPosition(windowSize.x / 2.0f, windowSize.y / 1.64f);
+	m_text.setPosition(windowSize.x / 2.0f, windowSize.y / 1.44f);
 
 	// Set up buttons.
 	m_buttonSize = sf::Vector2f(300.0f,32.0f);
-	m_buttonPos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 1.5f);
+	m_buttonPos = sf::Vector2f(windowSize.x / 2.0f, windowSize.y / 1.3f);
 	m_buttonPadding = 4; // 4px.
 
 	std::string str[3];
@@ -101,7 +105,8 @@ void State_GameOver::MouseClick(EventDetails* l_details){
 }
 
 void State_GameOver::Activate(){
-	m_stateMgr->Remove(StateType::Game); // Destroy 'Game' state in case the user chooses 'restart'
+	m_stateMgr->Remove(StateType::Game); 	// Destroy 'Game' state in case the user chooses 'restart'
+	m_FailSound.play(); 					// Play a sound effect.
 }
 
 void State_GameOver::Draw(){
@@ -122,7 +127,7 @@ void State_GameOver::OnDestroy(){
 		GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::MainMenu, "Mouse_Left");
 
-	m_stateMgr->GetContext()->m_textureManager->ReleaseResource("Logo");
+	m_stateMgr->GetContext()->m_textureManager->ReleaseResource("GameOver");
 }
 
 void State_GameOver::Deactivate(){}

@@ -30,4 +30,7 @@ private:
 
 	sf::Sprite m_logo;
 	sf::RectangleShape m_rect;
+
+	sf::SoundBuffer m_bufferFailSound;
+	sf::Sound m_FailSound;
 };
