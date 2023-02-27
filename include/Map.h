@@ -70,6 +70,7 @@ public:
 	~Map();
 
 	Tile* GetTile(unsigned int l_x, unsigned int l_y);
+	Tile* GetTileBackground(unsigned int l_x, unsigned int l_y);
 	TileInfo* GetDefaultTile();
 
 	float GetGravity()const;
@@ -79,6 +80,7 @@ public:
 	std::string GetMusicName();
 
 	void LoadMap(const std::string& l_path);
+	void LoadBackGround(const std::string& l_path);
 	void LoadNext();
 
 	void Update(float l_dT);
@@ -91,10 +93,12 @@ private:
 	unsigned int ConvertCoords(unsigned int l_x, unsigned int l_y);
 	void LoadTiles(const std::string& l_path);
 	void PurgeMap();
+	void PurgeMapBackground();
 	void PurgeTileSet();
 
 	TileSet m_tileSet;
 	TileMap m_tileMap;
+	TileMap m_tileMapBackground;
 	sf::Sprite m_background;
 	std::vector<sf::Sprite> hearts;
 	sf::Sprite hud;

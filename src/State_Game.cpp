@@ -28,8 +28,11 @@ void State_Game::OnCreate(){
 	// i know this is not ideal 
 	if(level==1)
 		m_gameMap->LoadMap("media/Maps/map1.map");
-	else if(level==2)
+	else if(level==2){
 		m_gameMap->LoadMap("media/Maps/map2.map");
+		m_gameMap->LoadBackGround("media/Maps/map2.map.background");
+	}
+		
 
 	
 	music.openFromFile(Utils::GetResourceDirectory() + "MusicTracks/" + m_gameMap->GetMusicName());

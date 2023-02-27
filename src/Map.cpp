@@ -15,6 +15,7 @@ Map::Map(SharedContext* l_context, BaseState* l_currentState)
 
 Map::~Map(){
 	PurgeMap();
+	PurgeMapBackground();
 	PurgeTileSet();
 	m_context->m_gameMap = nullptr;
 }
@@ -23,6 +24,12 @@ Tile* Map::GetTile(unsigned int l_x, unsigned int l_y){
 	auto itr = m_tileMap.find(ConvertCoords(l_x,l_y));
 	return(itr != m_tileMap.end() ? itr->second : nullptr);
 }
+
+Tile* Map::GetTileBackground(unsigned int l_x, unsigned int l_y){
+	auto itr = m_tileMapBackground.find(ConvertCoords(l_x,l_y));
+	return(itr != m_tileMapBackground.end() ? itr->second : nullptr);
+}
+
 TileInfo* Map::GetDefaultTile(){ return &m_defaultTile; }
 float Map::GetGravity()const{ return m_mapGravity; }
 unsigned int Map::GetTileSize()const{ return Sheet::Tile_Size; }
@@ -165,6 +172,65 @@ void Map::LoadMap(const std::string& l_path){
 	std::cout << "--- Map Loaded! ---" << std::endl;
 }
 
+void Map::LoadBackGround(const std::string& l_path){
+
+	std::ifstream mapFile;
+	mapFile.open(Utils::GetResourceDirectory() + l_path);
+	if (!mapFile.is_open()){ std::cout << "! Failed loading background map file: " << l_path << std::endl; return; }
+	EntityManager* entityMgr = m_context->m_entityManager;
+	std::string line;
+	std::cout << "--- Loading a background map: " << l_path << std::endl;
+
+	int playerId = -1;
+	while(std::getline(mapFile,line)){
+		if (line[0] == '|'){ continue; }
+		std::stringstream keystream(line);
+		std::string type;
+		keystream >> type;
+		if(type == "TILE"){
+			int tileId = 0;
+			keystream >> tileId;
+			if (tileId < 0){ std::cout << "! Bad tile id: " << tileId << std::endl; continue; }
+			auto itr = m_tileSet.find(tileId);
+			if (itr == m_tileSet.end()){ std::cout << "! Tile id(" << tileId << ") was not found in tileset." << std::endl; continue; }
+			
+			//if(tileId == 1 || tileId == 4){std::cout <<"->added "<<tileId<<std::endl;}
+
+			sf::Vector2i tileCoords;
+			keystream >> tileCoords.x >> tileCoords.y;
+			if (tileCoords.x > m_maxMapSize.x || tileCoords.y > m_maxMapSize.y){
+				std::cout << "! Tile is out of range: "<< tileCoords.x << " " << tileCoords.y << std::endl;
+				continue;
+			}
+			Tile* tile = new Tile();
+			// Bind properties of a tile from a set.
+			tile->m_properties = itr->second;
+			if(!m_tileMapBackground.emplace(ConvertCoords(tileCoords.x,tileCoords.y),tile).second)
+			{
+				// Duplicate tile detected!
+				std::cout << "! Duplicate tile! : " << tileCoords.x 
+					<< " " << tileCoords.y << " - " << ConvertCoords(tileCoords.x,tileCoords.y) << std::endl;
+				delete tile;
+				tile = nullptr;
+				continue;
+			}
+
+			// std::cout << "> Adding tile : " << tileCoords.x 
+			// 	<< " " << tileCoords.y << " - "<< ConvertCoords(tileCoords.x,tileCoords.y) << std::endl;
+					
+			std::string warp;
+			keystream >> warp;
+			tile->m_warp = false;
+
+		} else {
+			// Something else.
+			std::cout << "! Unknown type \"" << type << "\"." << std::endl;
+		}
+	}
+	mapFile.close();
+	std::cout << "--- Map Loaded! ---" << std::endl;
+}
+
 void Map::removeTile(int x, int y){
 	m_tileMap.erase(ConvertCoords(x,y));
 }
@@ -222,6 +288,17 @@ void Map::Draw(){
 	for(int x = tileBegin.x; x <= tileEnd.x; ++x){
 		for(int y = tileBegin.y; y <= tileEnd.y; ++y){
 			if(x < 0 || y < 0){ continue; }
+
+			// Background.
+			Tile* tileBackground = GetTileBackground(x,y);
+			if(tileBackground){
+				sf::Sprite& spriteBackground = tileBackground->m_properties->m_sprite;
+				spriteBackground.setPosition(x * Sheet::Tile_Size, y * Sheet::Tile_Size);
+				l_wind->draw(spriteBackground);
+				++count;
+			}
+
+			// Foreground.
 			Tile* tile = GetTile(x,y);
 			if (!tile){ continue; }
 			sf::Sprite& sprite = tile->m_properties->m_sprite;
@@ -291,6 +368,13 @@ void Map::PurgeMap(){
 	m_context->m_textureManager->ReleaseResource("HeartFull");
 	m_context->m_textureManager->ReleaseResource("HeartEmpty");
 	m_context->m_textureManager->ReleaseResource("Hud");
+}
+
+void Map::PurgeMapBackground(){
+	for (auto &itr : m_tileMapBackground){
+		delete itr.second;
+	}
+	m_tileMapBackground.clear();
 }
 
 void Map::PurgeTileSet(){
