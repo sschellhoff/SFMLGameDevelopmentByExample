@@ -56,7 +56,7 @@ This is game is an improvement of the book's **Chapter 7**. More specifically th
 - Added a healthbar for the player.
 - Added a new spritesheet for the player.
 - Added music and sounds (not with the book's sound manager but with a much less sophisticated implementation)
-- Added a new tileset (16 * 16)
+- ~Added a new tileset (16 * 16)~ Added an new Tile Set (32x32).
 - Added a Python script that generates .map files from .png images (This makes it easier to create a map)
 - Added **CMakeLists.txt** a based on this amazing guide: https://dane-bulat.medium.com/cmake-building-sfml-and-game-projects-on-linux-3947b3ba6e8
 - Minor other changes
@@ -74,7 +74,8 @@ Before checking out the source code I strongly recommend to read the book first 
 1. Textures:
     - Necromancer sprites: https://creativekind.itch.io/necromancer-free - Author: CreativeKind
     - Skeleton sprites: https://luizmelo.itch.io/monsters-creatures-fantasy - Author: LuizMelo
-    - Tileset: https://poloviiinkin.itch.io/textures - Author: Poloviiinkin
+    - Tileset 16x16 (not used currently): https://poloviiinkin.itch.io/textures - Author: Poloviiinkin
+    - Tileset 32x32 (this is the one used by the game): https://opengameart.org/content/dungeon-crawl-32x32-tiles - Author: Chris Hamons
     - Heart sprites: https://nicolemariet.itch.io/pixel-heart-animation-32x32-16x16-freebie - Author: NicoleMarieT
     - HUD Sprite: https://dandann1.itch.io/hud-buttons - - Author: DanDann1
 2. Music:
