@@ -174,10 +174,11 @@ void EntityBase::CheckCollisions(){
 			if(tile->m_warp && m_type == EntityType::Player){
 				gameMap->LoadNext();
 			}
-			if(tile->m_properties->m_id==1){
-				std::cout<<"touched!"<<std::endl;
-				gameMap->removeTile(x,y);
-			}
+			// example of pickup system
+			// if(tile->m_properties->m_id==1){
+			// 	std::cout<<"touched!"<<std::endl;
+			// 	gameMap->removeTile(x,y);
+			// }
 		}
 	}
 }
